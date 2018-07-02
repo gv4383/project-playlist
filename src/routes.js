@@ -7,10 +7,12 @@ import Search from './components/Search/Search';
 import Playlists from './components/Playlists/Playlists';
 import Playlist from './components/Playlists/Playlist/Playlist';
 
-<Switch>
-  <Route exact path="/" component={ Home } />
-  <Route path="/user" component={ User } />
-  <Route path="/playlists" component={ Playlists } />
-  <Route path="/playlists/playlist" component={ Playlist } />
-  <Route path="/search" component={ Search } />
-</Switch>
+export default (
+  <Switch>
+    <Route exact path="/" component={ Home } />
+    <Route path="/user" component={ User } />
+    <Route exact path="/playlists" component={ Playlists } />
+    <Route path="/playlists/playlist" component={ Playlist } />
+    <Route path="/search" component={ Search } />
+  </Switch>
+);
