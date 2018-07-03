@@ -6,6 +6,8 @@ const cors = require('cors');
 const massive = require('massive');
 const session = require('express-session')
 
+const song_cntrl = require('./controllers/song_cntrl');
+
 // Sets app as local server
 const app = express();
 
@@ -29,6 +31,9 @@ app.use(
     }
   })
 );
+
+// Gets list of songs stored in the database
+app.get('/api/songs', song_cntrl.getSongs);
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
