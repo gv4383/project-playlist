@@ -31,6 +31,7 @@ app.use(
     }
   })
 );
+// test
 
 // Gets list of songs stored in the database
 app.get('/api/songs', song_cntrl.getSongs);
