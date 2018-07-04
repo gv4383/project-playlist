@@ -4,7 +4,7 @@ class Playlists extends Component {
   render() {
     return (
       <div>
-        Playlists
+        <h1>Playlists</h1>
       </div>
     );
   }

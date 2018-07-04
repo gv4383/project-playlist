@@ -27,6 +27,7 @@ class Search extends Component {
 
     return (
       <div>
+        <h1>Seach</h1>
         { displaySongs }
       </div>
     );
