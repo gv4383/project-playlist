@@ -44,7 +44,7 @@ class App extends Component {
   getHashParams = () => {
     let hashParams = {};
     let e, r = /([^&;=]+)=?([^&;]*)/g,
-      q = window.location.hash.substring(1);
+      q = window.location.hash.substring(8);
     e = r.exec(q)
     while (e) {
       hashParams[e[1]] = decodeURIComponent(e[2]);
@@ -111,27 +111,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <h1 className="App-title">MusicSquirrel</h1>
             </header>
-            <a href='http://localhost:8888'>Login to Spotify</a>
-            <br />
-            <br />
-            <div>
-              <img src={ this.state.nowPlaying.albumArt }/>
-            </div>
-            <div>
-              <h3>Now Playing: { this.state.nowPlaying.name }</h3>
-            </div>
-            <div>
-              <iframe src={ embedUri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </div>
-            <div>
-              { this.state.loggedIn &&
-                <button onClick={ () => this.getNowPlaying() }>
-                  Check Now Playing
-                </button>
-              }
-            </div>
-            <br />
-            <h3>Playlist Name: { this.state.playlistName }</h3>
+            {/* <h3>Playlist Name: { this.state.playlistName }</h3>
             <div>
               <iframe src={ embedUri0 } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
@@ -160,8 +140,8 @@ class App extends Component {
                   <br />
                 </div>
               }
-            </div>
-            {/* { routes } */}
+            </div> */}
+            { routes }
           </div>
         </HashRouter>
       </Provider>
