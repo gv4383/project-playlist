@@ -109,10 +109,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    accessToken: state.accessToken,
-    refreshToken: state.refreshToken
-  }
+  return state
 };
 
 export default connect(mapStateToProps, { getAccessToken, getRefreshToken })(Search);

@@ -3,26 +3,21 @@ import axios from 'axios';
 /****** INITIAL STATE ******/
 const initialState = {
   songs: [],
+  playlists: [],
   isLoading: false,
   error: '',
   accessToken: '',
-  refreshToken: '',
-  thisIsA: "error"
+  refreshToken: ''
 }
 
 /****** ACTION TYPES ******/
-const GET_SONGS = 'GET_SONGS';
 const GET_ACCESS_TOKEN = 'GET_ACCESS_TOKEN';
 const GET_REFRESH_TOKEN = 'GET_REFRESH_TOKEN';
 
-// gets list of songs from server
-export function getSongs() {
-  return {
-    type: GET_SONGS,
-    payload: axios.get('/api/songs')
-  };
-}
+const GET_SONGS = 'GET_SONGS';
+const GET_PLAYLISTS = 'GET_PLAYLISTS';
 
+/****** ACTION CREATORS ******/
 export function getAccessToken(accessToken) {
   return {
     type: GET_ACCESS_TOKEN,
@@ -37,10 +32,38 @@ export function getRefreshToken(refreshToken) {
   }
 }
 
+// gets list of songs from server
+export function getSongs() {
+  return {
+    type: GET_SONGS,
+    payload: axios.get('/api/songs')
+  };
+}
+
+export function getPlaylists() {
+  return {
+    type: GET_PLAYLISTS,
+    payload: axios.get('/api/playlists')
+  };
+}
+
 /****** REDUCER ******/
 export default function songReducer(state = initialState, action) {
   switch(action.type) {
-    // GET
+    // GET ACCESS TOKEN
+    case 'GET_ACCESS_TOKEN':
+      return {
+        ...state,
+        accessToken: action.payload
+      };
+    // GET REFRESH TOKEN
+    case 'GET_REFRESH_TOKEN':
+      return {
+        ...state,
+        refreshToken: action.payload
+    };
+
+    // GET SONGS
     case 'GET_SONGS_PENDING':
       return {
         ...state,
@@ -59,17 +82,24 @@ export default function songReducer(state = initialState, action) {
         error: action.payload
     };
 
-    case 'GET_ACCESS_TOKEN':
+    // GET PLAYLISTS
+    case 'GET_PLAYLISTS_PENDING':
       return {
         ...state,
-        accessToken: action.payload
-      };
-
-      case 'GET_REFRESH_TOKEN':
-        return {
-          ...state,
-          refreshToken: action.payload
-      };
+        isLoading: true,
+    };
+    case 'GET_PLAYLISTS_FULFILLED':
+      return {
+        ...state,
+        isLoading: false,
+        playlists: action.payload.data
+    };
+    case 'GET_PLAYLISTS_REJECTED':
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+    };
 
     // DEFAULT
     default:

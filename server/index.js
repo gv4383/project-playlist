@@ -7,6 +7,7 @@ const massive = require('massive');
 const session = require('express-session')
 
 const song_cntrl = require('./controllers/song_cntrl');
+const playlist_contrl = require('./controllers/playlist_cntrl');
 
 // Sets app as local server
 const app = express();
@@ -34,6 +35,9 @@ app.use(
 
 // Gets list of songs stored in the database
 app.get('/api/songs', song_cntrl.getSongs);
+
+// Gets list of playlists stored in the database
+app.get('/api/playlists', playlist_contrl.getPlaylists);
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
