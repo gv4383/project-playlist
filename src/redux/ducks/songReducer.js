@@ -6,7 +6,8 @@ const initialState = {
   isLoading: false,
   error: '',
   accessToken: '',
-  refreshToken: ''
+  refreshToken: '',
+  thisIsA: "error"
 }
 
 /****** ACTION TYPES ******/

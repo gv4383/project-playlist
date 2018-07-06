@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
-
 import SpotifyWebApi from 'spotify-web-api-js';
+import { connect } from 'react-redux';
+
+import { getAccessToken, getRefreshToken } from '../../redux/ducks/songReducer';
 
 const spotifyApi = new SpotifyWebApi();
 
 class Search extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
+    const accessToken = params.access_token;
+    const refreshToken = params.refresh_token;
+
+    if (accessToken) {
+      this.props.getAccessToken(accessToken);
+      this.props.getRefreshToken(refreshToken);
+      spotifyApi.setAccessToken(accessToken);
     }
 
     this.state = {
-      loggedIn: token ? true : false,
-      nowPlaying: { 
-        name: 'Not Checked',
-        albumArt: '',
-        spotifyUri: ''
-      },
-      playlistName: '',
-      playlistTracks: [],
-      trackUri0: '',
-      trackUri1: '',
-      trackUri2: '',
-      searchedSongInput: ''
+      loggedIn: accessToken ? true : false,
+      searchedSongInput: '',
+      searchResults: [],
+      uri0: '',
+      uri1: '',
+      uri2: ''
     }
 
-    console.log('params: ', params);
+    // console.log('params: ', params);
+    // console.log('props: ', this.props);
   }
 
   getHashParams = () => {
@@ -44,39 +45,16 @@ class Search extends Component {
     return hashParams;
   }
 
-  getNowPlaying = () => {
-    spotifyApi.getMyCurrentPlaybackState()
-      .then((response) => {
-        // console.log('response: ', response);
-        this.setState({
-          nowPlaying: {
-            name: response.item.name,
-            albumArt: response.item.album.images[1].url,
-            spotifyUri: response.item.uri
-          }
-        });
-      });
-      // .then(console.log(this.state));
-  }
-
-  getAPlaylist = () => {
-    spotifyApi.getPlaylist() // put user's spotify id and playlist id as arguments here
-      .then((response) => {
-        // console.log(response);
-        this.setState({
-          playlistName: response.name,
-          playlistTracks: response.tracks.items,
-          trackUri0: response.tracks.items[0].track.uri,
-          trackUri1: response.tracks.items[1].track.uri,
-          trackUri2: response.tracks.items[4].track.uri
-        });
-      });
-  }
-
   searchSong = (input) => {
     spotifyApi.searchTracks(input)
       .then((response) => {
         console.log(response);
+        this.setState({
+          searchResults: response.tracks.items,
+          uri0: response.tracks.items[0].uri,
+          uri1: response.tracks.items[1].uri,
+          uri2: response.tracks.items[2].uri,
+        });
       });
   }
 
@@ -87,12 +65,24 @@ class Search extends Component {
   }
 
   render() {
-    let baseUri = 'https://open.spotify.com/embed?uri=';
-    let embedUri = baseUri + this.state.nowPlaying.spotifyUri;
-    // console.log(embedUri);
-    let embedUri0 = baseUri + this.state.trackUri0;
-    let embedUri1 = baseUri + this.state.trackUri1;
-    let embedUri2 = baseUri + this.state.trackUri2;
+    const baseUri = 'https://open.spotify.com/embed?uri=';
+    const embedUri0 = baseUri + this.state.uri0;
+    const embedUri1 = baseUri + this.state.uri1;
+    const embedUri2 = baseUri + this.state.uri2;
+    const embedArr = [embedUri0, embedUri1, embedUri2];
+    // console.log('embedUri0: ', embedUri0);
+    // console.log('embedUri1: ', embedUri1);
+    // console.log('embedUri2: ', embedUri2);
+
+    const displayPlayers = this.state.searchResults.map((song, i) => {
+      return (
+        <div key={ i }>
+          <iframe src={ embedArr[i] } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        </div>
+      );
+    });
+    
+    // console.log('props: ', this.props);
 
     return (
       <div>
@@ -109,29 +99,20 @@ class Search extends Component {
               </button>
               <br />
               <br />
+              { this.state.searchResults && displayPlayers }
             </div>
           }
         </div>
-        <div>
-          <img src={ this.state.nowPlaying.albumArt }/>
-        </div>
-        <div>
-          <h3>Now Playing: { this.state.nowPlaying.name }</h3>
-        </div>
-        <div>
-          <iframe src={ embedUri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-        </div>
-        <div>
-          { this.state.loggedIn &&
-            <button onClick={ () => this.getNowPlaying() }>
-              Check Now Playing
-            </button>
-          }
-        </div>
-        <br />
       </div>
     );
   }
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+  return {
+    accessToken: state.accessToken,
+    refreshToken: state.refreshToken
+  }
+};
+
+export default connect(mapStateToProps, { getAccessToken, getRefreshToken })(Search);

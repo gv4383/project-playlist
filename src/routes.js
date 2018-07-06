@@ -7,14 +7,16 @@ import User from './components/User/User';
 import Searched from './components/Searched/Searched';
 import Playlists from './components/Playlists/Playlists';
 import Playlist from './components/Playlists/Playlist/Playlist';
+import Playground from './components/Playground/Playground';
 
 export default (
   <Switch>
     <Route exact path="/" component={ Home } />
     <Route path="/search" component={ Search } />
-    <Route path="/user" component={ User } />
+    <Route path="/searched" component={ Searched } />
     <Route exact path="/playlists" component={ Playlists } />
     <Route path="/playlists/playlist" component={ Playlist } />
-    <Route path="/searched" component={ Searched } />
+    <Route path="/user" component={ User } />
+    <Route path="/playground" component={ Playground } />
   </Switch>
 );

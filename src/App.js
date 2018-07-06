@@ -38,7 +38,7 @@ class App extends Component {
       searchedSongInput: ''
     }
 
-    console.log(params);
+    // console.log(params);
   }
 
   getHashParams = () => {

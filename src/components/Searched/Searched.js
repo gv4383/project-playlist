@@ -6,6 +6,8 @@ import { getSongs } from '../../redux/ducks/songReducer';
 class Searched extends Component {
   constructor(props) {
     super(props)
+
+    console.log('props: ', this.props);
   }
 
   componentDidMount = () => {
