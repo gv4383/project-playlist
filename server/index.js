@@ -7,7 +7,7 @@ const massive = require('massive');
 const session = require('express-session')
 
 const song_cntrl = require('./controllers/song_cntrl');
-const playlist_contrl = require('./controllers/playlist_cntrl');
+const playlist_cntrl = require('./controllers/playlist_cntrl');
 
 // Sets app as local server
 const app = express();
@@ -37,7 +37,13 @@ app.use(
 app.get('/api/songs', song_cntrl.getSongs);
 
 // Gets list of playlists stored in the database
-app.get('/api/playlists', playlist_contrl.getPlaylists);
+app.get('/api/playlists', playlist_cntrl.getPlaylists);
+
+// Creates new playlist entry
+app.post('/api/playlists', playlist_cntrl.createPlaylist);
+
+// Deletes a playlist entry
+app.delete('/api/playlists/:id', playlist_cntrl.deletePlaylist);
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;

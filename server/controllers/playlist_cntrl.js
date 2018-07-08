@@ -6,6 +6,28 @@ const getPlaylists = (req, res, next) => {
     .catch(err => res.status(500).send({ getPlaylistsError: err }));
 }
 
+const createPlaylist = (req, res, next) => {
+  const { playlist_name, description } = req.body;
+
+  const db = req.app.get('db');
+
+  db.create_playlist([playlist_name, description])
+    .then(playlist => res.status(200).send(playlist))
+    .catch(err => res.status(500).send({ createPlaylistError: err }));
+}
+
+const deletePlaylist = (req, res, next) => {
+  const { id } = req.params;
+
+  const db = req.app.get('db');
+
+  db.delete_playlist(id)
+    .then(playlist => res.status(200).send(playlist))
+    .catch(err => res.status(500).send({ deletePlaylistError: err }));
+}
+
 module.exports = {
-  getPlaylists
+  getPlaylists,
+  createPlaylist,
+  deletePlaylist
 }
