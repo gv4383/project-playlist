@@ -45,6 +45,9 @@ app.post('/api/playlists', playlist_cntrl.createPlaylist);
 // Deletes a playlist entry
 app.delete('/api/playlists/:id', playlist_cntrl.deletePlaylist);
 
+// Edits a playlist's description
+app.put('/api/playlists/:id', playlist_cntrl.editPlaylistDescription);
+
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
 app.listen(port, () => { console.log(`Listening on port: ${ port }`) });

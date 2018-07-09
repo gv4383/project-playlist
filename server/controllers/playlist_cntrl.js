@@ -26,8 +26,20 @@ const deletePlaylist = (req, res, next) => {
     .catch(err => res.status(500).send({ deletePlaylistError: err }));
 }
 
+const editPlaylistDescription = (req, res, next) => {
+  const { id } = req.params;
+  const { description } = req.body;
+
+  const db = req.app.get('db');
+
+  db.edit_playlist_description([description, id])
+    .then(playlist => res.status(200).send(playlist))
+    .catch(err => res.status(500).send({ editPlaylistDescriptionError: err }));
+}
+
 module.exports = {
   getPlaylists,
   createPlaylist,
-  deletePlaylist
+  deletePlaylist,
+  editPlaylistDescription
 }
