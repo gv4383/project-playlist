@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 
 import { getPlaylists } from '../../redux/ducks/songReducer';
@@ -14,6 +15,10 @@ class Playlists extends Component {
     getPlaylists();
   }
 
+  deletePlaylist() {
+
+  }
+
   render() {
     const { playlists } = this.props;
     const displayPlaylists = playlists.map((playlist, i) => {
@@ -21,6 +26,8 @@ class Playlists extends Component {
         <div key={ i }>
           <h2>{ playlist.playlist_name }</h2>
           <p>{ playlist.description }</p>
+          <button>Edit</button>
+          <button>Delete</button>
         </div>
       );
     });
@@ -29,6 +36,11 @@ class Playlists extends Component {
     return (
       <div>
         <h1>Playlists</h1>
+        <br />
+        <input placeholder="Playlist Name" />
+        <input placeholder="Description" />
+        <button>Add Playlist</button>
+        <br />
         <br />
         { displayPlaylists }
       </div>
