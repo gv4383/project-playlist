@@ -18,6 +18,7 @@ const GET_SONGS = 'GET_SONGS';
 
 const GET_PLAYLISTS = 'GET_PLAYLISTS';
 const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
+const DELETE_PLAYLIST = 'DELETE_PLAYLIST';
 
 
 /****** ACTION CREATORS ******/
@@ -56,6 +57,14 @@ export function createPlaylist(playlistObj) {
   return {
     type: CREATE_PLAYLIST,
     payload: axios.post('/api/playlists', playlistObj)
+  }
+}
+
+// deletes a playlist entry within the server/database
+export function deletePlaylist(id) {
+  return {
+    type: DELETE_PLAYLIST,
+    payload: axios.delete(`/api/playlists/${ id }`)
   }
 }
 
@@ -127,6 +136,25 @@ export default function songReducer(state = initialState, action) {
     };
     case 'CREATE_PLAYLIST_REJECTED':
       return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+    };
+
+    // DELETE PLAYLIST
+    case 'DELETE_PLAYLIST_PENDING':
+      return  {
+        ...state,
+        isLoading: true
+    };
+    case 'DELETE_PLAYLIST_FULFILLED':
+      return  {
+        ...state,
+        isLoading: false,
+        playlists: [...state.playlists]
+    };
+    case 'DELETE_PLAYLIST_REJECTED':
+      return  {
         ...state,
         isLoading: true,
         error: action.payload

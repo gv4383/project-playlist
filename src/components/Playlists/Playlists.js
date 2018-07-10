@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 
 import {
   getPlaylists,
-  createPlaylist
+  createPlaylist,
+  deletePlaylist
 } from '../../redux/ducks/songReducer';
 
 class Playlists extends Component {
@@ -35,7 +36,7 @@ class Playlists extends Component {
   onSubmitHandler = (event) => {
     event.preventDefault();
 
-    console.log('this.props: ', this.props);
+    // console.log('this.props: ', this.props);
     const { name, description } = this.state;
     const { createPlaylist } = this.props;
 
@@ -48,7 +49,7 @@ class Playlists extends Component {
   }
 
   render() {
-    const { playlists } = this.props;
+    const { playlists, deletePlaylist } = this.props;
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {
@@ -57,7 +58,7 @@ class Playlists extends Component {
           <h2>{ playlist.playlist_name }</h2>
           <p>{ playlist.description }</p>
           <button>Edit</button>
-          <button>Delete</button>
+          <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
         </div>
       );
     });
@@ -94,5 +95,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
   getPlaylists,
-  createPlaylist
+  createPlaylist,
+  deletePlaylist
 })(Playlists);
