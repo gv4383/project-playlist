@@ -15,7 +15,10 @@ const GET_ACCESS_TOKEN = 'GET_ACCESS_TOKEN';
 const GET_REFRESH_TOKEN = 'GET_REFRESH_TOKEN';
 
 const GET_SONGS = 'GET_SONGS';
+
 const GET_PLAYLISTS = 'GET_PLAYLISTS';
+const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
+
 
 /****** ACTION CREATORS ******/
 export function getAccessToken(accessToken) {
@@ -40,11 +43,20 @@ export function getSongs() {
   };
 }
 
+// gets list of playlists from server
 export function getPlaylists() {
   return {
     type: GET_PLAYLISTS,
     payload: axios.get('/api/playlists')
   };
+}
+
+// adds a new playlist to server/database
+export function createPlaylist(playlistObj) {
+  return {
+    type: CREATE_PLAYLIST,
+    payload: axios.post('/api/playlists', playlistObj)
+  }
 }
 
 /****** REDUCER ******/
@@ -95,6 +107,25 @@ export default function songReducer(state = initialState, action) {
         playlists: action.payload.data
     };
     case 'GET_PLAYLISTS_REJECTED':
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+    };
+
+    // CREATE/ADD PLAYLIST
+    case 'CREATE_PLAYLIST_PENDING':
+      return {
+        ...state,
+        isLoading: true
+    };
+    case 'CREATE_PLAYLIST_FULFILLED':
+      return {
+        ...state,
+        isLoading: false,
+        playlists: [...state.playlists, action.payload.data]
+    };
+    case 'CREATE_PLAYLIST_REJECTED':
       return {
         ...state,
         isLoading: true,
