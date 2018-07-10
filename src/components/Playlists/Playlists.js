@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 
 import {
@@ -36,7 +37,7 @@ class Playlists extends Component {
 
     console.log('this.props: ', this.props);
     const { name, description } = this.state;
-    const { createPlaylist, history } = this.props;
+    const { createPlaylist } = this.props;
 
     if (name && description) {
       createPlaylist({
