@@ -54,10 +54,10 @@ export function getPlaylists() {
 }
 
 // adds a new playlist to server/database
-export function createPlaylist(playlistObj) {
+export function createPlaylist(obj) {
   return {
     type: CREATE_PLAYLIST,
-    payload: axios.post('/api/playlists', playlistObj)
+    payload: axios.post('/api/playlists', obj)
   }
 }
 
@@ -69,10 +69,10 @@ export function deletePlaylist(id) {
   }
 }
 
-export function editPlaylist(id) {
+export function editPlaylist(id, obj) {
   return {
     type: EDIT_PLAYLIST,
-    payload: axios.put(`/api/playlists/${ id }`)
+    payload: axios.put(`/api/playlists/${ id }`, obj)
   }
 }
 

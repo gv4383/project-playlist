@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import {
   getPlaylists,
   createPlaylist,
-  deletePlaylist
+  deletePlaylist,
+  editPlaylist
 } from '../../redux/ducks/songReducer';
 
 class Playlists extends Component {
@@ -13,9 +14,9 @@ class Playlists extends Component {
     super(props);
 
     this.state = {
-      edit: 'nothing',
       name: '',
-      description: ''
+      description: '',
+      edit: 'nothing'
     }
   }
 
@@ -55,10 +56,23 @@ class Playlists extends Component {
     });
   }
 
-  resetEditHandler = () => {
+  cancelEditHandler = () => {
     this.setState({
       edit: 'nothing'
     });
+  }
+
+  submitEditHandler = (description, id) => {
+    const { editPlaylist } = this.props;
+
+    editPlaylist(id, {
+      description
+    })
+    .then(
+      this.setState({
+        edit: 'nothing'
+      })
+    );
   }
 
   render() {
@@ -70,11 +84,14 @@ class Playlists extends Component {
         return (
           <div key={ i }>
             <h2>{ playlist.playlist_name }</h2>
-            <input  />
+            <input
+              name="description"
+              value={ this.state.description }
+              onChange={ this.onChangeHandler } />
             <br />
             <br />
-            <button onClick={ this.resetEditHandler }>Submit</button>
-            <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
+            <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
+            <button onClick={ this.cancelEditHandler }>Cancel</button>
           </div>
         );
       }
@@ -84,7 +101,7 @@ class Playlists extends Component {
             <h2>{ playlist.playlist_name }</h2>
             <p>{ playlist.description }</p>
             <button onClick={ () => this.setEditHandler(i) }>Edit</button>
-            <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
+            <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button>
           </div>
         );
       }
@@ -123,5 +140,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   getPlaylists,
   createPlaylist,
-  deletePlaylist
+  deletePlaylist,
+  editPlaylist
 })(Playlists);
