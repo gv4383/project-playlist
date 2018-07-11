@@ -13,6 +13,7 @@ class Playlists extends Component {
     super(props);
 
     this.state = {
+      edit: 'nothing',
       name: '',
       description: ''
     }
@@ -48,19 +49,45 @@ class Playlists extends Component {
     }
   }
 
+  setEditHandler = (event) => {
+    this.setState({
+      edit: `${event}`
+    });
+  }
+
+  resetEditHandler = () => {
+    this.setState({
+      edit: 'nothing'
+    });
+  }
+
   render() {
     const { playlists, deletePlaylist } = this.props;
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {
-      return (
-        <div key={ i }>
-          <h2>{ playlist.playlist_name }</h2>
-          <p>{ playlist.description }</p>
-          <button>Edit</button>
-          <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
-        </div>
-      );
+      if (this.state.edit == i) {
+        return (
+          <div key={ i }>
+            <h2>{ playlist.playlist_name }</h2>
+            <input  />
+            <br />
+            <br />
+            <button onClick={ this.resetEditHandler }>Submit</button>
+            <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
+          </div>
+        );
+      }
+      else {
+        return (
+          <div key={ i }>
+            <h2>{ playlist.playlist_name }</h2>
+            <p>{ playlist.description }</p>
+            <button onClick={ () => this.setEditHandler(i) }>Edit</button>
+            <button onClick={ () => deletePlaylist(playlist.playlist_id)}>Delete</button>
+          </div>
+        );
+      }
     });
     // console.log('playlists: ', playlists);
 
