@@ -18,6 +18,7 @@ class Searched extends Component {
 
   render() {
     const { songs } = this.props;
+    console.log('this.props.songs: ', songs);
 
     const displaySongs = songs.map((song, i) => {
       return (
