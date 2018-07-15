@@ -79,6 +79,8 @@ class Search extends Component {
         <div key={ i }>
           <iframe src={ embedArr[i] } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <button>Add</button>
+          <br />
+          <br />
         </div>
       );
     });
