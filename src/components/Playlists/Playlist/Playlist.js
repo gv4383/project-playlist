@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getSongs } from '../../../redux/ducks/songReducer';
+import { getSongs, getPlaylists } from '../../../redux/ducks/songReducer';
 
 class Playlist extends Component {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   componentDidMount = () => {
@@ -16,6 +16,7 @@ class Playlist extends Component {
 
   render() {
     const { songs } = this.props;
+    console.log('this.props.songs: ', songs);
 
     const displaySongs = songs.map((song, i) => {
       return (
@@ -28,6 +29,8 @@ class Playlist extends Component {
     return (
       <div>
         <h1>Playlist</h1>
+        {songs[0] &&
+        <h3>{songs[0].playlist_name}</h3>}
         { displaySongs }
       </div>
     );
