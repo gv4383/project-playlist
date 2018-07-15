@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getSongs, getPlaylists } from '../../../redux/ducks/songReducer';
+import { getSongs } from '../../../redux/ducks/songReducer';
 
 class Playlist extends Component {
   constructor(props) {
@@ -18,10 +18,14 @@ class Playlist extends Component {
     const { songs } = this.props;
     console.log('this.props.songs: ', songs);
 
+    const baseUri = 'https://open.spotify.com/embed?uri=';
+
     const displaySongs = songs.map((song, i) => {
       return (
         <div key={ i }>
-          <p>{ song.song_name }</p>
+          <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <br />
+          <br />
         </div>
       );
     });
@@ -29,8 +33,8 @@ class Playlist extends Component {
     return (
       <div>
         <h1>Playlist</h1>
-        {songs[0] &&
-        <h3>{songs[0].playlist_name}</h3>}
+        { songs[0] &&
+        <h3>{ songs[0].playlist_name }</h3> }
         { displaySongs }
       </div>
     );
