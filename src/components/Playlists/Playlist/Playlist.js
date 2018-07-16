@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { getSongs } from '../../../redux/ducks/songReducer';
+import { getSongs, removeSong } from '../../../redux/ducks/songReducer';
 
 class Playlist extends Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class Playlist extends Component {
   }
 
   render() {
-    const { songs } = this.props;
-    console.log('this.props.songs: ', songs);
+    const { songs, removeSong } = this.props;
+    console.log('this.props: ', this.props);
 
     const baseUri = 'https://open.spotify.com/embed?uri=';
 
@@ -24,6 +24,7 @@ class Playlist extends Component {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <button onClick={ () => removeSong(song.song_id) }>Remove</button>
           <br />
           <br />
         </div>
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
   return state;
 }
 
-export default connect(mapStateToProps, { getSongs })(Playlist);
+export default connect(mapStateToProps, { getSongs, removeSong })(Playlist);

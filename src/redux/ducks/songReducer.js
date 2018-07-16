@@ -16,6 +16,7 @@ const GET_REFRESH_TOKEN = 'GET_REFRESH_TOKEN';
 
 const GET_SONGS = 'GET_SONGS';
 const ADD_SONG = 'ADD_SONG';
+const REMOVE_SONG = 'REMOVE_SONG';
 
 const GET_PLAYLISTS = 'GET_PLAYLISTS';
 const CREATE_PLAYLIST = 'CREATE_PLAYLIST';
@@ -53,6 +54,15 @@ export function addSong(obj) {
     payload: axios.post('/api/songs', obj)
   }
 }
+
+// removes a song's association to a playist in database
+export function removeSong(id) {
+  return {
+    type: REMOVE_SONG,
+    payload: axios.delete(`/api/songs/${ id }`)
+  }
+}
+
 
 // gets list of playlists from server
 export function getPlaylists() {
@@ -125,19 +135,39 @@ export default function songReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: true
-      };
+    };
     case 'ADD_SONG_FULFILLED':
       return {
         ...state,
         isLoading: false,
         songs: [...state.songs, action.payload.data]
-      };
+    };
     case 'ADD_SONG_REJECTED':
       return {
         ...state,
         isLoading: true,
         error: action.payload
-      };
+    };
+
+    // REMOVE SONG
+    case 'REMOVE_SONG_PENDING':
+      return {
+        ...state,
+        isLoading: true
+    };
+    case 'REMOVE_SONG_FULFILLED':
+      return {
+        ...state,
+        isLoading: false,
+        songs: [...state.songs]
+    };
+    case 'REMOVE_SONG_REJECTED':
+      return {
+        ...state,
+        isLoading: true,
+        error: action.payload
+    };
+
 
     // GET PLAYLISTS
     case 'GET_PLAYLISTS_PENDING':
