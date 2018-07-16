@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Playlist from './Playlist/Playlist'
 
 import {
   getPlaylists,
@@ -27,7 +29,7 @@ class Playlists extends Component {
   }
 
   onChangeHandler = (event) => {
-    console.log(`${ event.target.name }: ${ event.target.value }`)
+    // console.log(`${ event.target.name }: ${ event.target.value }`)
 
     // sets the the appropriate state  depending on which input is being utilized
     this.setState({
@@ -98,7 +100,9 @@ class Playlists extends Component {
       else {
         return (
           <div key={ i }>
-            <h2>{ playlist.playlist_name }</h2>
+            <Link to={ `/playlists/playlist/${ playlist.playlist_id }` }>
+              <h2>{ playlist.playlist_name }</h2>
+            </Link>
             <p>{ playlist.description }</p>
             <button onClick={ () => this.setEditHandler(i) }>Edit</button>
             <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button>

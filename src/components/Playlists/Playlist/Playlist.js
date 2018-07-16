@@ -11,11 +11,12 @@ class Playlist extends Component {
   componentDidMount = () => {
     const { getSongs } = this.props;
 
-    getSongs();
+    getSongs(this.props.location.pathname.replace(/\D/g,''));
   }
 
   render() {
     const { songs, removeSong } = this.props;
+
     // console.log('this.props: ', this.props);
 
     const baseUri = 'https://open.spotify.com/embed?uri=';

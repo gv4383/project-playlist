@@ -40,10 +40,10 @@ export function getRefreshToken(refreshToken) {
 }
 
 // gets list of songs from server
-export function getSongs() {
+export function getSongs(id) {
   return {
     type: GET_SONGS,
-    payload: axios.get('/api/songs')
+    payload: axios.get(`/api/songs/${ id }`)
   };
 }
 
