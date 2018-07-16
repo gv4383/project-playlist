@@ -36,6 +36,10 @@ app.use(
 // Gets list of songs stored in the database
 app.get('/api/songs', song_cntrl.getSongs);
 
+// Adds a song associated with a playlist to the database
+app.post('/api/songs', song_cntrl.addSongs);
+
+
 // Gets list of playlists stored in the database
 app.get('/api/playlists', playlist_cntrl.getPlaylists);
 
