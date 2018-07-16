@@ -6,7 +6,7 @@ const getSongs = (req, res, next) => {
     .catch(err => res.status(500).send({ getSongsError: err }));
 }
 
-const addSongs = (req, res, next) => {
+const addSong = (req, res, next) => {
   const {
     spotify_uri,
     song_name,
@@ -23,7 +23,18 @@ const addSongs = (req, res, next) => {
     .catch(err => res.status(500).send({ addSongError: err }));
 }
 
+const removeSong = (req, res, next) => {
+  const { id } = req.params;
+
+  const db = req.app.get('db');
+
+  db.remove_song(id)
+    .then(song => res.status(200).send(song))
+    .catch(err => res.status(500).send({ removeSongError: err }));
+}
+
 module.exports = {
   getSongs,
-  addSongs
+  addSong,
+  removeSong
 }

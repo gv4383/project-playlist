@@ -37,7 +37,10 @@ app.use(
 app.get('/api/songs', song_cntrl.getSongs);
 
 // Adds a song associated with a playlist to the database
-app.post('/api/songs', song_cntrl.addSongs);
+app.post('/api/songs', song_cntrl.addSong);
+
+// Removes a song associated with a playlist in the database
+app.delete('/api/songs/:id', song_cntrl.removeSong);
 
 
 // Gets list of playlists stored in the database
