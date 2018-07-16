@@ -27,7 +27,8 @@ class Search extends Component {
     this.state = {
       loggedIn: accessToken ? true : false,
       searchedSongInput: '',
-      searchResults: []
+      searchResults: [],
+      selectedPlaylist: 1
     }
   }
 
@@ -59,21 +60,33 @@ class Search extends Component {
     });
   }
 
+  selectHandler = (event) => {
+    console.log(event.target.value);
+    this.setState({
+      selectedPlaylist: event.target.value
+    });
+  }
+
   render() {
     const baseUri = 'https://open.spotify.com/embed?uri=';
-    console.log('this.state.searchResults: ', this.state.searchResults);
+    // console.log('this.state.searchResults: ', this.state.searchResults);
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
         <div key={ i }>
-          <iframe src={ baseUri + song.uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={ baseUri + song.uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <select onChange={ this.selectHandler }>
+            <option value={ 1 }>kool jamz</option>
+            <option value={ 2 }>awesome playlist</option>
+            <option value={ 4 }>test playlist</option>
+          </select>
           <button onClick={ () => addSong({
             spotify_uri: song.uri,
             song_name: song.name,
             artist: song.artists[0].name,
             album: song.album.name,
             album_art: song.album.images[1].url,
-            playlist_id: 1
+            playlist_id: this.state.selectedPlaylist
           }) }>Add</button>
           <br />
           <br />

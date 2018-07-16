@@ -16,14 +16,14 @@ class Playlist extends Component {
 
   render() {
     const { songs, removeSong } = this.props;
-    console.log('this.props: ', this.props);
+    // console.log('this.props: ', this.props);
 
     const baseUri = 'https://open.spotify.com/embed?uri=';
 
     const displaySongs = songs.map((song, i) => {
       return (
         <div key={ i }>
-          <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <button onClick={ () => removeSong(song.song_id) }>Remove</button>
           <br />
           <br />

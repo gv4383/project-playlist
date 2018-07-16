@@ -48,7 +48,7 @@ class Playground extends Component {
           <h3>Now Playing: { this.state.nowPlaying.name }</h3>
         </div>
         <div>
-          <iframe src={ embedUri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={ embedUri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
         <div>
           <button onClick={ () => this.getNowPlaying() }>
