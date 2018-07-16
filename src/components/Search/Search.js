@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { connect } from 'react-redux';
 
-import { getAccessToken, getRefreshToken } from '../../redux/ducks/songReducer';
+import {
+  getAccessToken,
+  getRefreshToken,
+  addSong
+} from '../../redux/ducks/songReducer';
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -42,7 +46,7 @@ class Search extends Component {
   searchSong = (input) => {
     spotifyApi.searchTracks(input)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           searchResults: response.tracks.items
         });
@@ -57,13 +61,20 @@ class Search extends Component {
 
   render() {
     const baseUri = 'https://open.spotify.com/embed?uri=';
-    // console.log('this.state.searchResults: ', this.state.searchResults);
+    console.log('this.state.searchResults: ', this.state.searchResults);
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          <button>Add</button>
+          <button onClick={ () => addSong({
+            spotify_uri: song.uri,
+            song_name: song.name,
+            artist: song.artists[0].name,
+            album: song.album.name,
+            album_art: song.album.images[1].url,
+            playlist_id: 1
+          }) }>Add</button>
           <br />
           <br />
         </div>
@@ -98,4 +109,4 @@ const mapStateToProps = (state) => {
   return state
 };
 
-export default connect(mapStateToProps, { getAccessToken, getRefreshToken })(Search);
+export default connect(mapStateToProps, { getAccessToken, getRefreshToken, addSong })(Search);
