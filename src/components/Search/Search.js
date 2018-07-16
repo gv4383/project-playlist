@@ -23,14 +23,8 @@ class Search extends Component {
     this.state = {
       loggedIn: accessToken ? true : false,
       searchedSongInput: '',
-      searchResults: [],
-      uri0: '',
-      uri1: '',
-      uri2: ''
+      searchResults: []
     }
-
-    // console.log('params: ', params);
-    // console.log('props: ', this.props);
   }
 
   getHashParams = () => {
@@ -50,10 +44,7 @@ class Search extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          searchResults: response.tracks.items,
-          uri0: response.tracks.items[0].uri,
-          uri1: response.tracks.items[1].uri,
-          uri2: response.tracks.items[2].uri,
+          searchResults: response.tracks.items
         });
       });
   }
@@ -66,26 +57,18 @@ class Search extends Component {
 
   render() {
     const baseUri = 'https://open.spotify.com/embed?uri=';
-    const embedUri0 = baseUri + this.state.uri0;
-    const embedUri1 = baseUri + this.state.uri1;
-    const embedUri2 = baseUri + this.state.uri2;
-    const embedArr = [embedUri0, embedUri1, embedUri2];
-    // console.log('embedUri0: ', embedUri0);
-    // console.log('embedUri1: ', embedUri1);
-    // console.log('embedUri2: ', embedUri2);
+    // console.log('this.state.searchResults: ', this.state.searchResults);
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
         <div key={ i }>
-          <iframe src={ embedArr[i] } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <iframe src={ baseUri + song.uri } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <button>Add</button>
           <br />
           <br />
         </div>
       );
     });
-    
-    // console.log('props: ', this.props);
 
     return (
       <div>
