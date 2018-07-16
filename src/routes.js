@@ -15,7 +15,7 @@ export default (
     <Route path="/search" component={ Search } />
     <Route path="/searched" component={ Searched } />
     <Route exact path="/playlists" component={ Playlists } />
-    <Route path="/playlists/playlist" component={ Playlist } />
+    <Route path="/playlists/playlist/:id" component={ Playlist } />
     <Route path="/user" component={ User } />
     <Route path="/playground" component={ Playground } />
   </Switch>

@@ -11,7 +11,8 @@ class Playlist extends Component {
   componentDidMount = () => {
     const { getSongs } = this.props;
 
-    getSongs(this.props.location.pathname.replace(/\D/g,''));
+    // getSongs(this.props.location.pathname.replace(/\D/g,''));
+    getSongs(this.props.match.params.id);
   }
 
   render() {
