@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import {
   getAccessToken,
   getRefreshToken,
-  addSong
+  addSong,
+  getPlaylists
 } from '../../redux/ducks/songReducer';
 
 const spotifyApi = new SpotifyWebApi();
@@ -54,6 +55,12 @@ class Search extends Component {
       });
   }
 
+  componentDidMount = () => {
+    const { getPlaylists } = this.props;
+
+    getPlaylists();
+  }
+
   onChangeHandler = (event) => {
     this.setState({
       searchedSongInput: event.target.value
@@ -69,16 +76,24 @@ class Search extends Component {
 
   render() {
     const baseUri = 'https://open.spotify.com/embed?uri=';
-    // console.log('this.state.searchResults: ', this.state.searchResults);
+    // console.log('this.props: ', this.props);
+
+    const { playlists } = this.props;
+    // console.log('playlists: ', playlists)
+
+    const displayPlaylists = playlists.map((playlist, i) => {
+      return <option key={ i } value={ playlist.playlist_id }>{ playlist.playlist_name }</option>
+    });
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <select onChange={ this.selectHandler }>
-            <option value={ 1 }>kool jamz</option>
+            {/* <option value={ 1 }>kool jamz</option>
             <option value={ 2 }>awesome playlist</option>
-            <option value={ 4 }>test playlist</option>
+            <option value={ 4 }>test playlist</option> */}
+            { displayPlaylists }
           </select>
           <button onClick={ () => addSong({
             spotify_uri: song.uri,
@@ -119,7 +134,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state
+  return state;
 };
 
-export default connect(mapStateToProps, { getAccessToken, getRefreshToken, addSong })(Search);
+export default connect(mapStateToProps, { getAccessToken, getRefreshToken, addSong, getPlaylists })(Search);

@@ -106,7 +106,7 @@ class Playlists extends Component {
         );
       }
     });
-    // console.log('playlists: ', playlists);
+    // console.log('this.props: ', this.props);
 
     return (
       <div>
