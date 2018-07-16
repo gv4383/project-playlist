@@ -49,6 +49,7 @@ export function getSongs() {
 
 // adds a song to a playlist in database
 export function addSong(obj) {
+  alert('Song added to playlist!');
   return {
     type: ADD_SONG,
     payload: axios.post('/api/songs', obj)
@@ -57,6 +58,7 @@ export function addSong(obj) {
 
 // removes a song's association to a playist in database
 export function removeSong(id) {
+  alert('Song removed from playlist!')
   return {
     type: REMOVE_SONG,
     payload: axios.delete(`/api/songs/${ id }`)
