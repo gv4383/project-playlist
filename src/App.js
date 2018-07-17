@@ -6,6 +6,7 @@ import SpotifyWebApi from 'spotify-web-api-js';
 
 import routes from './routes';
 import store from './redux/store';
+import Navbar from './components/Navbar/Navbar';
 
 import logo from './logo.svg';
 import './App.css';
@@ -141,6 +142,7 @@ class App extends Component {
                 </div>
               }
             </div> */}
+            <Navbar />
             { routes }
           </div>
         </HashRouter>

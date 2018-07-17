@@ -7,6 +7,7 @@ class User extends Component {
     return (
       <div>
         <h1>User</h1>
+        ( ͡° ͜ʖ ͡°)
       </div>
     );
   }
