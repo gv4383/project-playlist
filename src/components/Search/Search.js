@@ -116,7 +116,7 @@ class Search extends Component {
         <br />
         <br />
         <div>
-          { this.state.loggedIn &&
+          {/* { this.state.loggedIn && */}
             <div>
               <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } />
               <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
@@ -126,7 +126,7 @@ class Search extends Component {
               <br />
               { this.state.searchResults && displayPlayers }
             </div>
-          }
+          {/* } */}
         </div>
       </div>
     );
