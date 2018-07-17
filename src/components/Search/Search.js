@@ -10,8 +10,6 @@ import {
 } from '../../redux/ducks/songReducer';
 import MatButton from '../minor_components/MatButton/MatButton';
 
-import './Search.css';
-
 const spotifyApi = new SpotifyWebApi();
 
 class Search extends Component {
