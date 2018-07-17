@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import Playlist from './Playlist/Playlist'
+import Playlist from './Playlist/Playlist';
 
 import {
   getPlaylists,
@@ -10,6 +10,8 @@ import {
   deletePlaylist,
   editPlaylist
 } from '../../redux/ducks/songReducer';
+import MatButton from '../minor_components/MatButton/MatButton';
+import MatInput from '../minor_components/MatInput/MatInput';
 
 class Playlists extends Component {
   constructor(props) {
@@ -39,6 +41,8 @@ class Playlists extends Component {
 
   onSubmitHandler = (event) => {
     event.preventDefault();
+
+    alert('Playlist created!');
 
     // console.log('this.props: ', this.props);
     const { name, description } = this.state;
@@ -86,14 +90,28 @@ class Playlists extends Component {
         return (
           <div key={ i }>
             <h2>{ playlist.playlist_name }</h2>
-            <input
+            {/* <input
               name="description"
               value={ this.state.description }
-              onChange={ this.onChangeHandler } />
+              onChange={ this.onChangeHandler }
+            /> */}
+            <MatInput
+              name="description"
+              value={ this.state.description }
+              onChange={ this.onChangeHandler }
+            />
             <br />
             <br />
-            <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
-            <button onClick={ this.cancelEditHandler }>Cancel</button>
+            {/* <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
+            <button onClick={ this.cancelEditHandler }>Cancel</button> */}
+            <MatButton
+              classNames="blue"
+              clickButton={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }
+            >Submit</MatButton>
+            <MatButton
+              classNames="blue"
+              clickButton={ this.cancelEditHandler }
+            >Cancel</MatButton>
           </div>
         );
       }
@@ -104,8 +122,16 @@ class Playlists extends Component {
               <h2>{ playlist.playlist_name }</h2>
             </Link>
             <p>{ playlist.description }</p>
-            <button onClick={ () => this.setEditHandler(i) }>Edit</button>
-            <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button>
+            {/* <button onClick={ () => this.setEditHandler(i) }>Edit</button>
+            <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button> */}
+            <MatButton
+              classNames="blue"
+              clickButton={ () => this.setEditHandler(i) }
+            >Edit</MatButton>
+            <MatButton
+              classNames="blue"
+              clickButton={ () => deletePlaylist(playlist.playlist_id) }
+            >Delete</MatButton>
           </div>
         );
       }
@@ -117,17 +143,33 @@ class Playlists extends Component {
         <h1>Playlists</h1>
         <br />
         <form onSubmit={ this.onSubmitHandler }>
-          <input 
+          {/* <input 
             name="name"
             value={ this.state.name }
             placeholder="Playlist Name"
-            onChange={ this.onChangeHandler } />
+            onChange={ this.onChangeHandler }
+          />
           <input 
             name="description"
             value={ this.state.description }
             placeholder="Description"
-            onChange={ this.onChangeHandler } />
-          <button>Add Playlist</button>
+            onChange={ this.onChangeHandler }
+          />
+          <button>Add Playlist</button> */}
+          <MatInput
+            name="name"
+            value={ this.state.name }
+            placeholder="Playlist Name"
+            onChange={ this.onChangeHandler }
+          />
+          <MatInput
+            name="description"
+            value={ this.state.description }
+            placeholder="Description"
+            onChange={ this.onChangeHandler }
+          />
+          <br />
+          <MatButton classNames="button">Add Playlist</MatButton>
         </form>
         <br />
         <br />

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import SpotifyWebApi from 'spotify-web-api-js';
 
 import MatButton from '../minor_components/MatButton/MatButton';
+import MatInput from '../minor_components/MatInput/MatInput';
 
 
 const spotifyApi = new SpotifyWebApi();
@@ -63,6 +64,7 @@ class Playground extends Component {
         </div>
         <br />
         <br />
+        <MatInput />
       </div>
     );
   }

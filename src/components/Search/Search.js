@@ -9,6 +9,7 @@ import {
   getPlaylists
 } from '../../redux/ducks/songReducer';
 import MatButton from '../minor_components/MatButton/MatButton';
+import MatInput from '../minor_components/MatInput/MatInput';
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -63,6 +64,7 @@ class Search extends Component {
   }
 
   onChangeHandler = (event) => {
+    // console.log('input: ', event.target.value);
     this.setState({
       searchedSongInput: event.target.value
     });
@@ -130,8 +132,12 @@ class Search extends Component {
         <div>
           {/* { this.state.loggedIn && */}
             <div>
-              <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } />
-              <br />
+              {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
+              <MatInput
+                value={ this.state.searchedSongInput } 
+                placeholder="Search for a song"
+                onChange={ this.onChangeHandler }
+              />
               <br />
               {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
                 Search Song

@@ -24,22 +24,26 @@ const styles = {
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
     fontSize: '12px'
   },
-  black: {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  blue: {
+    background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
     borderRadius: 3,
     border: 0,
-    color: 'black',
-    height: 48,
-    padding: '0 30px',
+    color: 'white',
+    height: 35,
+    padding: '0 10px',
     boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    fontSize: '14px',
-    float: 'right'
+    fontSize: '12px'
   }
 };
 
 function MatButton(props) {
   return (
-    <Button className={ props.classes[props.classNames] } size={ props.size } onClick={ props.clickButton }>
+    <Button
+    className={ props.classes[props.classNames] }
+    type="submit"
+    size={ props.size }
+    onClick={ props.clickButton }
+    >
       { props.children ? props.children : 'idk' }
     </Button>
   );
