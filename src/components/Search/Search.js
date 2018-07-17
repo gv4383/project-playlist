@@ -8,6 +8,9 @@ import {
   addSong,
   getPlaylists
 } from '../../redux/ducks/songReducer';
+import MatButton from '../minor_components/MatButton/MatButton';
+
+import './Search.css';
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -95,14 +98,25 @@ class Search extends Component {
             <option value={ 4 }>test playlist</option> */}
             { displayPlaylists }
           </select>
-          <button onClick={ () => addSong({
+          {/* <button onClick={ () => addSong({
             spotify_uri: song.uri,
             song_name: song.name,
             artist: song.artists[0].name,
             album: song.album.name,
             album_art: song.album.images[1].url,
             playlist_id: this.state.selectedPlaylist
-          }) }>Add</button>
+          }) }>Add</button> */}
+          <MatButton
+            classNames="button"
+            clickButton={ () => addSong({
+              spotify_uri: song.uri,
+              song_name: song.name,
+              artist: song.artists[0].name,
+              album: song.album.name,
+              album_art: song.album.images[1].url,
+              playlist_id: this.state.selectedPlaylist
+            }) }
+          >Add</MatButton>
           <br />
           <br />
         </div>
@@ -112,16 +126,19 @@ class Search extends Component {
     return (
       <div>
         <h1>Search</h1>
-        <a href='http://localhost:8888'>Login to Spotify</a>
+        <a href='http://localhost:8888'>Request New Access Token</a>
         <br />
         <br />
         <div>
           {/* { this.state.loggedIn && */}
             <div>
               <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } />
-              <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
+              <br />
+              <br />
+              {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
                 Search Song
-              </button>
+              </button> */}
+              <MatButton classNames="button" clickButton={ () => this.searchSong(this.state.searchedSongInput) }>Search</MatButton>
               <br />
               <br />
               { this.state.searchResults && displayPlayers }

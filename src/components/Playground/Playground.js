@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SpotifyWebApi from 'spotify-web-api-js';
 
+import MatButton from '../minor_components/MatButton/MatButton';
+
+
 const spotifyApi = new SpotifyWebApi();
 
 class Playground extends Component {
@@ -33,7 +36,7 @@ class Playground extends Component {
   }
   
   render() {
-    console.log('props: ', this.props);
+    // console.log('props: ', this.props);
 
     let baseUri = 'https://open.spotify.com/embed?uri=';
     let embedUri = baseUri + this.state.nowPlaying.spotifyUri;
@@ -51,9 +54,12 @@ class Playground extends Component {
           <iframe src={ embedUri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
         </div>
         <div>
-          <button onClick={ () => this.getNowPlaying() }>
+          <MatButton
+            classNames="button"
+            clickButton={ () => this.getNowPlaying() }>
+
             Check Now Playing
-          </button>
+          </MatButton>
         </div>
         <br />
         <br />
@@ -69,4 +75,5 @@ const mapStateToProps = (state) => {
   }
 }
 
+// export withStyles(styles)(Playground);
 export default connect(mapStateToProps)(Playground);
