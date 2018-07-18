@@ -12,10 +12,12 @@ import {
 } from '../../redux/ducks/songReducer';
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
+import PlayCard from './PlayCard/PlayCard';
 
 import './Playlists.css';
 
 class Playlists extends Component {
+
   constructor(props) {
     super(props);
 
@@ -54,7 +56,12 @@ class Playlists extends Component {
       createPlaylist({
         playlist_name: name,
         description: description
-      }).then(() => this.props.getPlaylists());
+      })
+      .then(() => this.props.getPlaylists())
+      .then(this.setState({
+        name: '',
+        description: ''
+      }));
     }
   }
 
@@ -88,63 +95,73 @@ class Playlists extends Component {
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {
+
+      return (
+        <PlayCard
+          uniqueKey={ i }
+          playlist={ playlist }
+          i={ i }
+        />
+      );
+    });
       // return (
       //   <Playlist playlist={playlist} />
       // )
-      if (this.state.edit == i) {
-        return (
-          <div
-            key={ i }
-            className="playlist-container"
-          >
-            <h2>{ playlist.playlist_name }</h2>
-            {/* <input
-              name="description"
-              value={ this.state.description }
-              onChange={ this.onChangeHandler }
-            /> */}
-            <MatInput
-              name="description"
-              value={ this.state.description }
-              onChange={ this.onChangeHandler }
-            />
-            {/* <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
-            <button onClick={ this.cancelEditHandler }>Cancel</button> */}
-            <MatButton
-              classNames="blue"
-              clickButton={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }
-            >Submit</MatButton>
-            <MatButton
-              classNames="blue"
-              clickButton={ this.cancelEditHandler }
-            >Cancel</MatButton>
-          </div>
-        );
-      }
-      else {
-        return (
-          <div
-            key={ i }
-            className="playlist-container"
-          >
-            <Link to={ `/playlists/playlist/${ playlist.playlist_id }` }>
-              <h2>{ playlist.playlist_name }</h2>
-            </Link>
-            <p>{ editedPlaylist.description || playlist.description }</p>
-            {/* <button onClick={ () => this.setEditHandler(i) }>Edit</button>
-            <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button> */}
-            <MatButton
-              classNames="blue"
-              clickButton={ () => this.setEditHandler(i) }
-            >Edit</MatButton>
-            <MatButton
-              classNames="blue"
-              clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => this.props.getPlaylists()) }
-            >Delete</MatButton>
-          </div>
-        );
-      }
-    });
+
+    //   if (this.state.edit == i) {
+    //     return (
+    //       <div
+    //         key={ i }
+    //         className="playlist-container"
+    //       >
+    //         <h2>{ playlist.playlist_name }</h2>
+    //         {/* <input
+    //           name="description"
+    //           value={ this.state.description }
+    //           onChange={ this.onChangeHandler }
+    //         /> */}
+    //         <MatInput
+    //           name="description"
+    //           value={ this.state.description }
+    //           onChange={ this.onChangeHandler }
+    //         />
+    //         {/* <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
+    //         <button onClick={ this.cancelEditHandler }>Cancel</button> */}
+    //         <MatButton
+    //           classNames="blue"
+    //           clickButton={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }
+    //         >Submit</MatButton>
+    //         <MatButton
+    //           classNames="blue"
+    //           clickButton={ this.cancelEditHandler }
+    //         >Cancel</MatButton>
+    //       </div>
+    //     );
+    //   }
+    //   else {
+    //     return (
+    //       <div
+    //         key={ i }
+    //         className="playlist-container"
+    //       >
+    //         <Link to={ `/playlists/playlist/${ playlist.playlist_id }` }>
+    //           <h2>{ playlist.playlist_name }</h2>
+    //         </Link>
+    //         <p>{ editedPlaylist.description || playlist.description }</p>
+    //         {/* <button onClick={ () => this.setEditHandler(i) }>Edit</button>
+    //         <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button> */}
+    //         <MatButton
+    //           classNames="blue"
+    //           clickButton={ () => this.setEditHandler(i) }
+    //         >Edit</MatButton>
+    //         <MatButton
+    //           classNames="blue"
+    //           clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => this.props.getPlaylists()) }
+    //         >Delete</MatButton>
+    //       </div>
+    //     );
+    //   }
+    // });
     // console.log('this.props: ', this.props);
 
     return (

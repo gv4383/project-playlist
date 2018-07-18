@@ -1,4 +1,3 @@
 UPDATE playlists
 SET description = $1
-WHERE playlist_id = $2
-RETURNING *;
+WHERE playlist_id = $2;
