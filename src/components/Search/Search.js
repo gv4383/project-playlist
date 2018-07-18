@@ -136,7 +136,7 @@ class Search extends Component {
     return (
       <div>
         <h1>Search</h1>
-        <a href='http://localhost:8888'>Request New Access Token</a>
+        <a href='http://localhost:3001/login'>Request New Access Token</a>
         <br />
         <br />
         <div>
