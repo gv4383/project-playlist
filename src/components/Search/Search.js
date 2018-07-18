@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import {
   getAccessToken,
   getRefreshToken,
+  storeCountry,
+  storeEmail,
+  storeUsername,
   addSong,
   getPlaylists
 } from '../../redux/ducks/songReducer';
@@ -18,12 +21,19 @@ class Search extends Component {
     super(props);
 
     const params = this.getHashParams();
+    // console.log('params: ', params);
     const accessToken = params.access_token;
     const refreshToken = params.refresh_token;
+    const country = params.country;
+    const email = params.email;
+    const username = params.username;
 
     if (accessToken) {
       this.props.getAccessToken(accessToken);
       this.props.getRefreshToken(refreshToken);
+      this.props.storeCountry(country);
+      this.props.storeEmail(email);
+      this.props.storeUsername(username);
       spotifyApi.setAccessToken(accessToken);
     }
 
@@ -158,4 +168,12 @@ const mapStateToProps = (state) => {
   return state;
 };
 
-export default connect(mapStateToProps, { getAccessToken, getRefreshToken, addSong, getPlaylists })(Search);
+export default connect(mapStateToProps, {
+  getAccessToken,
+  getRefreshToken,
+  storeCountry,
+  storeEmail,
+  storeUsername,
+  addSong,
+  getPlaylists
+})(Search);

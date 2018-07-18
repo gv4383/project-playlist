@@ -37,7 +37,10 @@ class Playground extends Component {
   }
   
   render() {
-    // console.log('props: ', this.props);
+    const { country, email, username } = this.props;
+    if (country && email && username) {
+      console.log('props: ', this.props);
+    };
 
     let baseUri = 'https://open.spotify.com/embed?uri=';
     let embedUri = baseUri + this.state.nowPlaying.spotifyUri;
@@ -73,7 +76,10 @@ class Playground extends Component {
 const mapStateToProps = (state) => {
   return {
     accessToken: state.accessToken,
-    refreshToken: state.refreshToken
+    refreshToken: state.refreshToken,
+    country: state.country,
+    email: state.email,
+    username: state.username
   }
 }
 

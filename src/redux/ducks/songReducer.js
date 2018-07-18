@@ -8,12 +8,18 @@ const initialState = {
   isLoading: false,
   error: '',
   accessToken: '',
-  refreshToken: ''
+  refreshToken: '',
+  country: '',
+  email: '',
+  username: ''
 }
 
 /****** ACTION TYPES ******/
 const GET_ACCESS_TOKEN = 'GET_ACCESS_TOKEN';
 const GET_REFRESH_TOKEN = 'GET_REFRESH_TOKEN';
+const STORE_COUNTRY = 'STORE_COUNTRY';
+const STORE_EMAIL = 'STORE_EMAIL';
+const STORE_USERNAME = 'STORE_USERNAME';
 
 const GET_SONGS = 'GET_SONGS';
 const ADD_SONG = 'ADD_SONG';
@@ -37,6 +43,27 @@ export function getRefreshToken(refreshToken) {
   return {
     type: GET_REFRESH_TOKEN,
     payload: refreshToken
+  }
+}
+
+export function storeCountry(country) {
+  return {
+    type: STORE_COUNTRY,
+    payload: country
+  }
+}
+
+export function storeEmail(email) {
+  return {
+    type: STORE_EMAIL,
+    payload: email
+  }
+}
+
+export function storeUsername(username) {
+  return {
+    type: STORE_USERNAME,
+    payload: username
   }
 }
 
@@ -112,6 +139,24 @@ export default function songReducer(state = initialState, action) {
       return {
         ...state,
         refreshToken: action.payload
+    };
+    // GET USER'S COUNTRY
+    case 'STORE_COUNTRY':
+      return {
+        ...state,
+        country: action.payload
+    };
+    // GET USER'S EMAIL
+    case 'STORE_EMAIL':
+      return {
+        ...state,
+        email: action.payload
+    };
+    // GET USER'S USERNAME
+    case 'STORE_USERNAME':
+      return {
+        ...state,
+        username: action.payload
     };
 
     // GET SONGS
