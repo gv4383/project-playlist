@@ -50,7 +50,7 @@ class Search extends Component {
   searchSong = (input) => {
     spotifyApi.searchTracks(input)
       .then((response) => {
-        // console.log(response);
+        console.log('response: ', response);
         this.setState({
           searchResults: response.tracks.items
         });

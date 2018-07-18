@@ -11,7 +11,7 @@ class Navbar extends Component {
         <Link to="/search">Search</Link>
         <Link to="/playlists">Playlists</Link>
         <Link to="/user">User</Link>
-        <Link to="/playground">Playlground</Link>
+        <Link to="/playground">Playground</Link>
       </div>
     );
   }

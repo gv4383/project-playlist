@@ -4,6 +4,7 @@ import axios from 'axios';
 const initialState = {
   songs: [],
   playlists: [],
+  editedPlaylist: {},
   isLoading: false,
   error: '',
   accessToken: '',
@@ -238,7 +239,7 @@ export default function songReducer(state = initialState, action) {
       return {
         ...state,
         isLoading: false,
-        playlists: [...state.playlists]
+        editedPlaylist: action.payload.data[0]
       };
     case 'EDIT_PLAYLIST_REJECTED':
       return {

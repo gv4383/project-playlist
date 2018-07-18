@@ -13,6 +13,8 @@ import {
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
 
+import './Playlists.css';
+
 class Playlists extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +54,7 @@ class Playlists extends Component {
       createPlaylist({
         playlist_name: name,
         description: description
-      });
+      }).then(() => this.props.getPlaylists());
     }
   }
 
@@ -76,19 +78,25 @@ class Playlists extends Component {
     })
     .then(
       this.setState({
-        edit: 'nothing'
+        edit: 'nothing',
       })
     );
   }
 
   render() {
-    const { playlists, deletePlaylist } = this.props;
+    const { playlists, deletePlaylist, editedPlaylist } = this.props;
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {
+      // return (
+      //   <Playlist playlist={playlist} />
+      // )
       if (this.state.edit == i) {
         return (
-          <div key={ i }>
+          <div
+            key={ i }
+            className="playlist-container"
+          >
             <h2>{ playlist.playlist_name }</h2>
             {/* <input
               name="description"
@@ -100,8 +108,6 @@ class Playlists extends Component {
               value={ this.state.description }
               onChange={ this.onChangeHandler }
             />
-            <br />
-            <br />
             {/* <button onClick={ () => this.submitEditHandler(this.state.description, playlist.playlist_id) }>Submit</button>
             <button onClick={ this.cancelEditHandler }>Cancel</button> */}
             <MatButton
@@ -117,11 +123,14 @@ class Playlists extends Component {
       }
       else {
         return (
-          <div key={ i }>
+          <div
+            key={ i }
+            className="playlist-container"
+          >
             <Link to={ `/playlists/playlist/${ playlist.playlist_id }` }>
               <h2>{ playlist.playlist_name }</h2>
             </Link>
-            <p>{ playlist.description }</p>
+            <p>{ editedPlaylist.description || playlist.description }</p>
             {/* <button onClick={ () => this.setEditHandler(i) }>Edit</button>
             <button onClick={ () => deletePlaylist(playlist.playlist_id) }>Delete</button> */}
             <MatButton
@@ -130,7 +139,7 @@ class Playlists extends Component {
             >Edit</MatButton>
             <MatButton
               classNames="blue"
-              clickButton={ () => deletePlaylist(playlist.playlist_id) }
+              clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => this.props.getPlaylists()) }
             >Delete</MatButton>
           </div>
         );
@@ -173,7 +182,9 @@ class Playlists extends Component {
         </form>
         <br />
         <br />
-        { displayPlaylists }
+        <div className="list">
+          { displayPlaylists }
+        </div>
       </div>
     );
   }
