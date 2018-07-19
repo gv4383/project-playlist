@@ -136,7 +136,7 @@ class Search extends Component {
     return (
       <div>
         <h1>Search</h1>
-        <a href='http://localhost:3001/login'>Request New Access Token</a>
+        <button className="basic-button"><a id="link" href='http://localhost:3001/login'>Request New Access Token</a></button>
         <br />
         <br />
         <div>

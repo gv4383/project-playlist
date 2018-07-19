@@ -76,17 +76,20 @@ class PlayCard extends Component {
           className="playlist-container"
         >
           <Link to={ `/playlists/playlist/${ playlist.playlist_id}` }>
+            <img src="https://i.scdn.co/image/36049a5d10a04fced95a0c57ecbf441e0e98f817" />
             <h2>{ playlist.playlist_name }</h2>
+            <p>{ playlist.description }</p>
           </Link>
-          <p>{ playlist.description }</p>
-          <MatButton
-            classNames="blue"
-            clickButton={ this.editHandler }
-          >Edit</MatButton>
-          <MatButton
-            classNames="blue"
-            clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => getPlaylists()) }
-          >Delete</MatButton>
+          <div className="bottom-buttons">
+            <MatButton
+              classNames="blue"
+              clickButton={ this.editHandler }
+            >Edit</MatButton>
+            <MatButton
+              classNames="blue"
+              clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => getPlaylists()) }
+            >Delete</MatButton>
+          </div>
         </div>
       );
     }

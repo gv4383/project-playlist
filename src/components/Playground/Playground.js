@@ -5,6 +5,8 @@ import SpotifyWebApi from 'spotify-web-api-js';
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
 
+import './Playground.css';
+
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -46,10 +48,10 @@ class Playground extends Component {
     let embedUri = baseUri + this.state.nowPlaying.spotifyUri;
 
     return (
-      <div>
+      <div className="text">
         <h1>Playground</h1>
         <div>
-          <img src={ this.state.nowPlaying.albumArt }/>
+          <img className="album-art" src={ this.state.nowPlaying.albumArt }/>
         </div>
         <div>
           <h3>Now Playing: { this.state.nowPlaying.name }</h3>

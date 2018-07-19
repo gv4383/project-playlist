@@ -5,7 +5,7 @@ class Home extends Component {
     return (
       <div>
         <h1>Home</h1>
-        <a href='http://localhost:3001/login'>Login to Spotify</a>
+        <button className="basic-button"><a id="link" href='http://localhost:3001/login'>Login to Spotify</a></button>
       </div>
     );
   }
