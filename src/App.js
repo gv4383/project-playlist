@@ -10,6 +10,7 @@ import store from './redux/store';
 import Navbar from './components/Navbar/Navbar';
 
 import logo from './logo.svg';
+import menu from './menu-24px.svg';
 import './App.css';
 import { EventEmitter } from 'events';
 
@@ -114,7 +115,7 @@ class App extends Component {
               <img src={logo} className="App-logo" alt="logo" />
               <div>
                 <h1 className="App-title">MusicSquirrel</h1>
-                <Button className="menu" onClick={ () => this.setState({ open: !this.state.open })}>Menu</Button>
+                <Button className="menu" onClick={ () => this.setState({ open: !this.state.open })}><img src={menu} /></Button>
               </div>
             </header>
             {/* <h3>Playlist Name: { this.state.playlistName }</h3>

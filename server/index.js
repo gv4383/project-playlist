@@ -14,6 +14,7 @@ const cookieParser = require('cookie-parser');
 
 const song_cntrl = require('./controllers/song_cntrl');
 const playlist_cntrl = require('./controllers/playlist_cntrl');
+const user_cntrl = require('./controllers/user_cntrl');
 
 // Sets app as local server
 const app = express();
@@ -61,6 +62,13 @@ app.delete('/api/playlists/:id', playlist_cntrl.deletePlaylist);
 
 // Edits a playlist's description
 app.put('/api/playlists/:id', playlist_cntrl.editPlaylistDescription);
+
+
+// Gets a user from users table in database
+app.get('/api/users/:id', user_cntrl.getUser);
+
+// Adds a user to users table in database
+app.post('/api/users', user_cntrl.addUser);
 
 
 
