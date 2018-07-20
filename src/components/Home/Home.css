@@ -1,0 +1,10 @@
+.home-header {
+  background: linear-gradient(45deg, rgb(250, 35, 81) 30%, rgb(172, 83, 255) 90%);
+  height: 170px;
+  padding: 20px;
+  color: white;
+}
+
+.title {
+  width: 250px;
+}

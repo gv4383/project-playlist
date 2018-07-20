@@ -35,7 +35,7 @@ class Playlist extends Component {
 
     return (
       <div>
-        <h1>Playlist</h1>
+        <h1 className="clear">Playlist</h1>
         { songs[0] &&
         <h3>{ songs[0].playlist_name }</h3> }
         { displaySongs }

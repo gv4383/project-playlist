@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SpotifyWebApi from 'spotify-web-api-js';
+import { Button, Collapse, Well } from 'react-bootstrap';
 
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
@@ -18,7 +19,8 @@ class Playground extends Component {
       nowPlaying: { 
         name: 'Not Checked',
         albumArt: '',
-        spotifyUri: ''
+        spotifyUri: '',
+        open: false
       }
     }
   }
@@ -49,7 +51,7 @@ class Playground extends Component {
 
     return (
       <div className="text">
-        <h1>Playground</h1>
+        <h1 className="clear">Playground</h1>
         <div>
           <img className="album-art" src={ this.state.nowPlaying.albumArt }/>
         </div>
@@ -70,6 +72,17 @@ class Playground extends Component {
         <br />
         <br />
         <MatInput />
+        <Button onClick={ () => this.setState({ open: !this.state.open }) }>Dropdown</Button>
+        <Collapse in={this.state.open}>
+          <div>
+            <Well className="well ">
+              Anim pariatur cliche reprehenderit, enim eiusmod high life
+              accusamus terry richardson ad squid. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente
+              ea proident.
+            </Well>
+          </div>
+        </Collapse>
       </div>
     );
   }

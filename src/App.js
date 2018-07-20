@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { Collapse, Button } from 'react-bootstrap';
 
 import SpotifyWebApi from 'spotify-web-api-js';
 
@@ -36,7 +37,8 @@ class App extends Component {
       trackUri0: '',
       trackUri1: '',
       trackUri2: '',
-      searchedSongInput: ''
+      searchedSongInput: '',
+      open: false
     }
 
     // console.log(params);
@@ -110,7 +112,10 @@ class App extends Component {
           <div className="App">
             <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
-              <h1 className="App-title">MusicSquirrel</h1>
+              <div>
+                <h1 className="App-title">MusicSquirrel</h1>
+                <Button className="menu" onClick={ () => this.setState({ open: !this.state.open })}>Menu</Button>
+              </div>
             </header>
             {/* <h3>Playlist Name: { this.state.playlistName }</h3>
             <div>
@@ -142,7 +147,12 @@ class App extends Component {
                 </div>
               }
             </div> */}
-            <Navbar />
+            <Collapse in={ this.state.open }>
+              <div>
+                <Navbar />
+              </div>
+            </Collapse>
+            {/* <Navbar /> */}
             { routes }
           </div>
         </HashRouter>

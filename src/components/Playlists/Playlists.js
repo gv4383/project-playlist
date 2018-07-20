@@ -76,7 +76,7 @@ class Playlists extends Component {
 
     return (
       <div>
-        <h1>Playlists</h1>
+        <h1 className="clear">Playlists</h1>
         <br />
         <form onSubmit={ this.onSubmitHandler }>
           {/* <input 

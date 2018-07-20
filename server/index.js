@@ -5,6 +5,7 @@ const { json } = require('body-parser');
 const cors = require('cors');
 const massive = require('massive');
 const session = require('express-session')
+const path = require('path');
 
 // REQUIRED FOR SPOTIFY SERVER
 const request = require('request'); // "Request" library
@@ -19,6 +20,7 @@ const app = express();
 
 app.use(json());
 app.use(cors());
+app.use(express.static(__dirname + '/../build'));
 
 // Allows local server to utilize SQL commands within db folder
 massive(process.env.CONNECTION_STRING)
@@ -156,7 +158,10 @@ app.get('/callback', function(req, res) {
           const { id, email, country, images } = body;
           const { url } = images[0]
 
+          // local
           res.redirect('http://localhost:3000/#/search/' +
+          // hosting
+          // res.redirect('/search/') +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token,
@@ -222,6 +227,10 @@ app.get('/refresh_token', function(req, res) {
 /************ SPOTIFY SERVER SECTION ************/
 
 
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;

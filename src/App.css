@@ -31,9 +31,17 @@
   height: 25px;
 }
 
+.menu {
+  float: right;
+}
+
 #link {
   text-decoration: none;
   color: inherit;
+}
+
+.clear {
+  clear: both;
 }
 
 @keyframes App-logo-spin {
