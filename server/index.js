@@ -21,13 +21,13 @@ const app = express();
 
 app.use(json());
 app.use(cors());
-app.use(express.static(__dirname + '/../build'));
+// app.use(express.static(__dirname + '/../build'));
 
 // Allows local server to utilize SQL commands within db folder
 massive(process.env.CONNECTION_STRING)
   .then(dbInstance => {
     app.set("db", dbInstance);
-}).catch(err => console.log(err));
+  }).catch(err => console.log(err));
 
 // Allows application to be utilized by multiple users
 app.use(
@@ -68,7 +68,7 @@ app.put('/api/playlists/:id', playlist_cntrl.editPlaylistDescription);
 app.get('/api/users/:id', user_cntrl.getUser);
 
 // Adds a user to users table in database
-app.post('/api/users', user_cntrl.addUser);
+// app.post('/api/users', user_cntrl.addUser);
 
 
 
@@ -83,7 +83,7 @@ var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
  * @param  {number} length The length of the string
  * @return {string} The generated string
  */
-var generateRandomString = function(length) {
+var generateRandomString = function (length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 
@@ -98,10 +98,10 @@ var stateKey = 'spotify_auth_state';
 // var app = express();
 
 app.use(express.static(__dirname + '/public'))
-   .use(cors())
-   .use(cookieParser());
+  .use(cors())
+  .use(cookieParser());
 
-app.get('/login', function(req, res) {
+app.get('/login', function (req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -118,7 +118,7 @@ app.get('/login', function(req, res) {
     }));
 });
 
-app.get('/callback', function(req, res) {
+app.get('/callback', function (req, res) {
 
   // your application requests refresh and access tokens
   // after checking the state parameter
@@ -147,11 +147,11 @@ app.get('/callback', function(req, res) {
       json: true
     };
 
-    request.post(authOptions, function(error, response, body) {
+    request.post(authOptions, function (error, response, body) {
       if (!error && response.statusCode === 200) {
 
         var access_token = body.access_token,
-            refresh_token = body.refresh_token;
+          refresh_token = body.refresh_token;
 
         var options = {
           url: 'https://api.spotify.com/v1/me',
@@ -160,23 +160,37 @@ app.get('/callback', function(req, res) {
         };
 
         // use the access token to access the Spotify Web API
-        request.get(options, function(error, response, body) {
+        request.get(options, async function (error, response, body) {
+
           console.log(body);
 
           const { id, email, country, images } = body;
-          const { url } = images[0]
+          // const { url } = images[0]
+
+          const db = app.get('db');
+
+          const res1 = await db.get_user([id])
+          if (!res1[0]) {
+            await db.add_user([id, email, country])
+            // res.status(200).send(user[0])
+          }
+
+          // else {
+          //   // res.status(200).send(res1[0]);
+          // }
+
 
           // local
           res.redirect('http://localhost:3000/#/search/' +
-          // hosting
-          // res.redirect('/search/') +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token,
-            username: id,
-            email: email,
-            country: country
-          }));
+            // hosting
+            // res.redirect('/search/') +
+            querystring.stringify({
+              access_token: access_token,
+              refresh_token: refresh_token,
+              username: id,
+              email: email,
+              country: country
+            }));
         });
 
         // we can also pass the token to the browser to make requests from there
@@ -202,7 +216,7 @@ app.get('/callback', function(req, res) {
   }
 });
 
-app.get('/refresh_token', function(req, res) {
+app.get('/refresh_token', function (req, res) {
 
   // requesting access token from refresh token
   var refresh_token = req.query.refresh_token;
@@ -216,7 +230,7 @@ app.get('/refresh_token', function(req, res) {
     json: true
   };
 
-  request.post(authOptions, function(error, response, body) {
+  request.post(authOptions, function (error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;
       res.send({
@@ -236,10 +250,10 @@ app.get('/refresh_token', function(req, res) {
 
 
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../build/index.html'));
-});
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../build/index.html'));
+// });
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
-app.listen(port, () => { console.log(`Listening on port: ${ port }`) });
+app.listen(port, () => { console.log(`Listening on port: ${port}`) });
