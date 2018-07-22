@@ -86,7 +86,7 @@ export function addSong(obj) {
 
 // removes a song's association to a playist in database
 export function removeSong(id) {
-  alert('Song removed from playlist!')
+  alert('Song removed from playlist!');
   return {
     type: REMOVE_SONG,
     payload: axios.delete(`/api/songs/${ id }`)
