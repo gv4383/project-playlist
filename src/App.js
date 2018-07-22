@@ -39,7 +39,7 @@ class App extends Component {
       trackUri1: '',
       trackUri2: '',
       searchedSongInput: '',
-      open: true
+      open: false
     }
 
     // console.log(params);
