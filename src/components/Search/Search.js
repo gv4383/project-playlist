@@ -120,6 +120,7 @@ class Search extends Component {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <br />
           {/* <select onChange={ this.selectHandler }>
             <option value={ 1 }>kool jamz</option>
             <option value={ 2 }>awesome playlist</option>

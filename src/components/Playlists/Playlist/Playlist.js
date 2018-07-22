@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'react-bootstrap';
 
 import { getSongs, removeSong } from '../../../redux/ducks/songReducer';
 
@@ -16,7 +17,7 @@ class Playlist extends Component {
   }
 
   render() {
-    const { songs, removeSong } = this.props;
+    const { songs, removeSong, getSongs } = this.props;
 
     // console.log('this.props: ', this.props);
 
@@ -26,7 +27,9 @@ class Playlist extends Component {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          <button onClick={ () => removeSong(song.song_id) }>Remove</button>
+          <br />
+          {/* <button onClick={ () => removeSong(song.song_id) }>Remove</button> */}
+          <Button bsStyle="danger" onClick={ () => removeSong(song.song_id).then(() => getSongs(this.props.match.params.id)) }>Remove</Button>
           <br />
           <br />
         </div>
