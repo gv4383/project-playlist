@@ -4,6 +4,9 @@ import { Button } from 'react-bootstrap';
 
 import { getSongs, removeSong } from '../../../redux/ducks/songReducer';
 
+import './Playlist.css';
+import close from '../../../baseline-close-24px.svg';
+
 class Playlist extends Component {
   constructor(props) {
     super(props);
@@ -25,11 +28,11 @@ class Playlist extends Component {
 
     const displaySongs = songs.map((song, i) => {
       return (
-        <div key={ i }>
-          <iframe src={ baseUri + song.spotify_uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <div key={ i } className="playlist-song-card">
+          <iframe src={ baseUri + song.spotify_uri } width="260" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <br />
           {/* <button onClick={ () => removeSong(song.song_id) }>Remove</button> */}
-          <Button bsStyle="danger" onClick={ () => removeSong(song.song_id).then(() => getSongs(this.props.match.params.id)) }>Remove</Button>
+          <Button bsStyle="danger" onClick={ () => removeSong(song.song_id).then(() => getSongs(this.props.match.params.id)) }><img src={ close } /></Button>
           <br />
           <br />
         </div>
@@ -44,7 +47,9 @@ class Playlist extends Component {
         { songs[0] &&
         <h1 className="clear">{ songs[0].playlist_name }</h1> }
         <br />
-        { displaySongs }
+        <div className="display-songs">
+          { displaySongs }
+        </div>
       </div>
     );
   }
