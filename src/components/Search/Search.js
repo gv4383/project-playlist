@@ -69,7 +69,7 @@ class Search extends Component {
   searchSong = (input) => {
     spotifyApi.searchTracks(input)
       .then((response) => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         this.setState({
           searchResults: response.tracks.items
         });
@@ -94,6 +94,14 @@ class Search extends Component {
     this.setState({
       selectedPlaylist: event.target.value
     });
+  }
+
+  onSubmitHandler = (event) => {
+    event.preventDefault();
+
+    const { searchedSongInput } = this.state;
+
+    this.searchSong(searchedSongInput)
   }
 
   render() {
@@ -169,17 +177,19 @@ class Search extends Component {
             <div>
               {/* { this.state.loggedIn && */}
                 <div>
-                  {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
-                  <MatInput
-                    value={ this.state.searchedSongInput } 
-                    placeholder="Search for a song"
-                    onChange={ this.onChangeHandler }
-                  />
-                  <br />
-                  {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
-                    Search Song
-                  </button> */}
-                  <MatButton classNames="button" clickButton={ () => this.searchSong(this.state.searchedSongInput) }>Search</MatButton>
+                  <form onSubmit={ this.onSubmitHandler }>
+                    {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
+                    <MatInput
+                      value={ this.state.searchedSongInput } 
+                      placeholder="Search for a song"
+                      onChange={ this.onChangeHandler }
+                    />
+                    <br />
+                    {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
+                      Search Song
+                    </button> */}
+                    <MatButton classNames="button">Search</MatButton>
+                  </form>
                 </div>
           </div>
           </div>
