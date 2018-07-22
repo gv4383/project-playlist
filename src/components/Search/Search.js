@@ -11,8 +11,14 @@ import {
   addSong,
   getPlaylists
 } from '../../redux/ducks/songReducer';
+
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
+
+import {
+  DropdownButton,
+  MenuItem
+} from 'react-bootstrap';
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -41,7 +47,8 @@ class Search extends Component {
       loggedIn: accessToken ? true : false,
       searchedSongInput: '',
       searchResults: [],
-      selectedPlaylist: 1
+      selectedPlaylist: 1,
+      selectedPlaylistName: 'Select Playlist'
     }
   }
 
@@ -93,21 +100,35 @@ class Search extends Component {
 
     const { playlists } = this.props;
     // console.log('playlists: ', playlists)
+    console.log('state: ', this.state);
 
     const displayPlaylists = playlists.map((playlist, i) => {
-      return <option key={ i } value={ playlist.playlist_id }>{ playlist.playlist_name }</option>
+      // return <option key={ i } value={ playlist.playlist_id }>{ playlist.playlist_name }</option>
+      return (
+        <MenuItem
+          key={ i }
+          eventKey={ playlist.playlist_id }
+          onSelect={ (eventKey) => this.setState({
+            selectedPlaylist: eventKey,
+            selectedPlaylistName: playlist.playlist_name
+          }) }
+        >{ playlist.playlist_name }</MenuItem>
+      );
     });
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
         <div key={ i }>
           <iframe src={ baseUri + song.uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          <select onChange={ this.selectHandler }>
-            {/* <option value={ 1 }>kool jamz</option>
+          {/* <select onChange={ this.selectHandler }>
+            <option value={ 1 }>kool jamz</option>
             <option value={ 2 }>awesome playlist</option>
-            <option value={ 4 }>test playlist</option> */}
+            <option value={ 4 }>test playlist</option>
             { displayPlaylists }
-          </select>
+          </select> */}
+          <DropdownButton title={ this.state.selectedPlaylistName }>
+            { displayPlaylists }
+          </DropdownButton>
           {/* <button onClick={ () => addSong({
             spotify_uri: song.uri,
             song_name: song.name,

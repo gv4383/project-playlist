@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import SpotifyWebApi from 'spotify-web-api-js';
-import { Button, Collapse, Well } from 'react-bootstrap';
+import {
+  Button,
+  Collapse,
+  Well,
+  DropdownButton,
+  MenuItem
+} from 'react-bootstrap';
 
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
@@ -83,6 +89,10 @@ class Playground extends Component {
             </Well>
           </div>
         </Collapse>
+        <br />
+        <DropdownButton>
+          <MenuItem>Test</MenuItem>
+        </DropdownButton>
       </div>
     );
   }
