@@ -1,15 +1,20 @@
-.nav-button {
-  background: #ffffffff;
-  color: #88899f;
-  border: 1px solid #88899f;
-  border-radius: 10px;
-  height: 25px;
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: baseline;
+  background: #222326;
+  height: 300px;
 }
 
-.nav {
-  height: 40px;
+.nav-button {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  background: inherit;
+  color: #ffffff;
+  border: none;
+  height: 60px;
+  width: 100vw;
+  font-size: 20px;
+  border-top: 2px solid #686868;
 }

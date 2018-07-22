@@ -19,7 +19,7 @@ class User extends Component {
   componentDidMount = () => {
     spotifyApi.getMe()
       .then((response) => {
-        console.log('response: ', response);
+        // console.log('response: ', response);
         this.setState({
           country: response.country,
           email: response.email,
@@ -30,7 +30,7 @@ class User extends Component {
   }
   
   render() {
-    console.log('state: ', this.state);
+    // console.log('state: ', this.state);
 
     const { country, email, username, image } = this.state;
 

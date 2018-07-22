@@ -31,6 +31,16 @@
   height: 25px;
 }
 
+.menu-bar {
+  background: black;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+#menu-button {
+  cursor: pointer;
+}
+
 .menu {
   float: right;
 }

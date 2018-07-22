@@ -10,7 +10,7 @@ import store from './redux/store';
 import Navbar from './components/Navbar/Navbar';
 
 import logo from './logo.svg';
-import menu from './menu-24px.svg';
+import menu from './round_menu_white_24dp.png';
 import './App.css';
 import { EventEmitter } from 'events';
 
@@ -39,7 +39,7 @@ class App extends Component {
       trackUri1: '',
       trackUri2: '',
       searchedSongInput: '',
-      open: false
+      open: true
     }
 
     // console.log(params);
@@ -111,13 +111,13 @@ class App extends Component {
       <Provider store={ store }>
         <HashRouter>
           <div className="App">
-            <header className="App-header">
+            {/* <header className="App-header">
               <img src={logo} className="App-logo" alt="logo" />
               <div>
                 <h1 className="App-title">MusicSquirrel</h1>
                 <Button className="menu" onClick={ () => this.setState({ open: !this.state.open })}><img src={menu} /></Button>
               </div>
-            </header>
+            </header> */}
             {/* <h3>Playlist Name: { this.state.playlistName }</h3>
             <div>
               <iframe src={ embedUri0 } width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -148,6 +148,11 @@ class App extends Component {
                 </div>
               }
             </div> */}
+            <div className="menu-bar">
+              <img id="menu-button" src={ menu } alt="menu" onClick={ () => this.setState({
+                open: !this.state.open
+              }) } />
+            </div>
             <Collapse in={ this.state.open }>
               <div>
                 <Navbar />
