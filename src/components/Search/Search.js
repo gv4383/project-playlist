@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import SpotifyWebApi from 'spotify-web-api-js';
 import { connect } from 'react-redux';
 
+import './Search.css';
+
 import {
   getAccessToken,
   getRefreshToken,
@@ -100,7 +102,7 @@ class Search extends Component {
 
     const { playlists } = this.props;
     // console.log('playlists: ', playlists)
-    console.log('state: ', this.state);
+    // console.log('state: ', this.state);
 
     const displayPlaylists = playlists.map((playlist, i) => {
       // return <option key={ i } value={ playlist.playlist_id }>{ playlist.playlist_name }</option>
@@ -118,39 +120,38 @@ class Search extends Component {
 
     const displayPlayers = this.state.searchResults.map((song, i) => {
       return (
-        <div key={ i }>
+        <div key={ i } className="song-card">
           <iframe src={ baseUri + song.uri } width="300" height="80" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          <br />
-          {/* <select onChange={ this.selectHandler }>
-            <option value={ 1 }>kool jamz</option>
-            <option value={ 2 }>awesome playlist</option>
-            <option value={ 4 }>test playlist</option>
-            { displayPlaylists }
-          </select> */}
-          <DropdownButton title={ this.state.selectedPlaylistName }>
-            { displayPlaylists }
-          </DropdownButton>
-          {/* <button onClick={ () => addSong({
-            spotify_uri: song.uri,
-            song_name: song.name,
-            artist: song.artists[0].name,
-            album: song.album.name,
-            album_art: song.album.images[1].url,
-            playlist_id: this.state.selectedPlaylist
-          }) }>Add</button> */}
-          <MatButton
-            classNames="button"
-            clickButton={ () => addSong({
+          <div>
+            {/* <select onChange={ this.selectHandler }>
+              <option value={ 1 }>kool jamz</option>
+              <option value={ 2 }>awesome playlist</option>
+              <option value={ 4 }>test playlist</option>
+              { displayPlaylists }
+            </select> */}
+            <DropdownButton title={ this.state.selectedPlaylistName }>
+              { displayPlaylists }
+            </DropdownButton>
+            {/* <button onClick={ () => addSong({
               spotify_uri: song.uri,
               song_name: song.name,
               artist: song.artists[0].name,
               album: song.album.name,
               album_art: song.album.images[1].url,
               playlist_id: this.state.selectedPlaylist
-            }) }
-          >Add</MatButton>
-          <br />
-          <br />
+            }) }>Add</button> */}
+            <MatButton
+              classNames="button"
+              clickButton={ () => addSong({
+                spotify_uri: song.uri,
+                song_name: song.name,
+                artist: song.artists[0].name,
+                album: song.album.name,
+                album_art: song.album.images[1].url,
+                playlist_id: this.state.selectedPlaylist
+              }) }
+            >Add</MatButton>
+          </div>
         </div>
       );
     });
@@ -177,7 +178,9 @@ class Search extends Component {
               <MatButton classNames="button" clickButton={ () => this.searchSong(this.state.searchedSongInput) }>Search</MatButton>
               <br />
               <br />
-              { this.state.searchResults && displayPlayers }
+              <div className="display-songs">
+                { this.state.searchResults && displayPlayers }
+              </div>
             </div>
           {/* } */}
         </div>
