@@ -19,3 +19,35 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.search-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 274px;
+  color: #ffffff;
+  background: linear-gradient(45deg, rgb(250, 35, 81, 0.50) 30%, rgb(172, 83, 255, 0.50) 90%), url(../../headphones-small.png);
+}
+
+.search-container {
+  
+}
+
+.request-button {
+  background: #1aa34a;
+  color: #ffffff;
+  border: none;
+  border-radius: 100px;
+  height: 40px;
+  width: 200px;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+
+.button-placement {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

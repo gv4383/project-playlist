@@ -158,32 +158,36 @@ class Search extends Component {
 
     return (
       <div>
-        <h1 className="clear">Search</h1>
-        <button className="basic-button"><a id="link" href='http://localhost:3001/login'>Request New Access Token</a></button>
-        <br />
-        <br />
-        <div>
-          {/* { this.state.loggedIn && */}
+        <div className="search-top">
+          <div className="button-placement">
+            <button className="request-button"><a id="link" href='http://localhost:3001/login'>Request New Token</a></button>
+          </div>
+          <br />
+          <br />
+          <div className="search-container">
+            <h3 className="search">Search for a song below!</h3>
             <div>
-              {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
-              <MatInput
-                value={ this.state.searchedSongInput } 
-                placeholder="Search for a song"
-                onChange={ this.onChangeHandler }
-              />
-              <br />
-              {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
-                Search Song
-              </button> */}
-              <MatButton classNames="button" clickButton={ () => this.searchSong(this.state.searchedSongInput) }>Search</MatButton>
-              <br />
-              <br />
-              <div className="display-songs">
-                { this.state.searchResults && displayPlayers }
-              </div>
-            </div>
-          {/* } */}
+              {/* { this.state.loggedIn && */}
+                <div>
+                  {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
+                  <MatInput
+                    value={ this.state.searchedSongInput } 
+                    placeholder="Search for a song"
+                    onChange={ this.onChangeHandler }
+                  />
+                  <br />
+                  {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
+                    Search Song
+                  </button> */}
+                  <MatButton classNames="button" clickButton={ () => this.searchSong(this.state.searchedSongInput) }>Search</MatButton>
+                </div>
+          </div>
+          </div>
         </div>
+        <div className="display-songs">
+          { this.state.searchResults && displayPlayers }
+        </div>
+          {/* } */}
       </div>
     );
   }

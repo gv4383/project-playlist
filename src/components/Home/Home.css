@@ -11,7 +11,7 @@
 
 .home-container {
   height: 640px;
-  background: linear-gradient(45deg, rgb(250, 35, 81, 0.50) 30%, rgb(172, 83, 255, 0.50) 90%), url(../../cat.jpg);
+  background: linear-gradient(45deg, rgba(199, 139, 255, 0.5) 30%, rgba(151, 211, 252, 0.5) 90%), url(../../cat.jpg);
   /* background: linear-gradient(135deg, rgb(172, 83, 255, 0.50) 30%, rgb(250, 35, 81, 0.50) 90%), url(../../cat.jpg); */
   color: #ffffff;
   display: flex;
@@ -28,11 +28,12 @@
 }
 
 .login-button {
-  background: inherit;
+  background: #1aa34a;
   color: #ffffff;
-  border: 1px solid #ffffff;
+  border: none;
   border-radius: 100px;
   height: 50px;
   width: 200px;
-  font-size: 1.5em;
+  font-size: 1.1em;
+  font-weight: bold;
 }
