@@ -93,6 +93,18 @@ class Playground extends Component {
         <DropdownButton>
           <MenuItem>Test</MenuItem>
         </DropdownButton>
+        <br />
+        <div className="ui action input">
+          <input type="text" placeholder="Search..." />
+          <button className="ui icon button">
+            <i className="search icon"></i>
+          </button>
+        </div>
+        <br />
+        <div class="ui icon input">
+          <input type="text" placeholder="Search..." />
+          <i class="circular search link icon"></i>
+        </div>
       </div>
     );
   }

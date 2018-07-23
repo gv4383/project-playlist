@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { HashRouter } from 'react-router-dom';
+import { HashRouter, Link } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { Collapse, Button } from 'react-bootstrap';
 
@@ -11,6 +11,7 @@ import Navbar from './components/Navbar/Navbar';
 
 import logo from './logo.svg';
 import menu from './round_menu_white_24dp.png';
+import headset from './headset_white_24dp.png';
 import './App.css';
 import { EventEmitter } from 'events';
 
@@ -149,7 +150,12 @@ class App extends Component {
               }
             </div> */}
             <div className="menu-bar">
-              <img id="menu-button" src={ menu } alt="menu" onClick={ () => this.setState({
+              <Link className="inside-bar" id="link" to="/search">
+                <div className="logo">
+                  <h3>Sound<img src={ headset } />Squirrel</h3>
+                </div>
+              </Link>
+              <img className="inside-bar" id="menu-button" src={ menu } alt="menu" onClick={ () => this.setState({
                 open: !this.state.open
               }) } />
             </div>

@@ -22,6 +22,7 @@
     "redux": "^4.0.0",
     "redux-promise-middleware": "^5.1.1",
     "request": "^2.87.0",
+    "semantic-ui-react": "^0.82.1",
     "spotify-web-api-js": "^0.24.0"
   },
   "scripts": {

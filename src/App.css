@@ -35,7 +35,19 @@
 .menu-bar {
   background: black;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  color: #ffffff;
+}
+
+.inside-bar {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #menu-button {

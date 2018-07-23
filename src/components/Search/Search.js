@@ -173,22 +173,33 @@ class Search extends Component {
           <br />
           <br />
           <div className="search-container">
-            <h3 className="search">Search for a song below!</h3>
+            <h2 className="search">
+              It's a search page.<br />What else are you going to do?
+            </h2>
             <div>
               {/* { this.state.loggedIn && */}
                 <div>
                   <form onSubmit={ this.onSubmitHandler }>
                     {/* <input placeholder="Search for a song" value={ this.state.searchedSongInput } onChange={ this.onChangeHandler } /> */}
-                    <MatInput
+                    {/* <MatInput
                       value={ this.state.searchedSongInput } 
                       placeholder="Search for a song"
                       onChange={ this.onChangeHandler }
-                    />
+                    /> */}
+                    <div className="ui icon input">
+                      <input 
+                        onChange={ this.onChangeHandler }
+                        value={ this.state.searchedSongInput }
+                        type="text"
+                        placeholder="Search for a song" 
+                      />
+                      <i onClick={ () => this.searchSong(this.state.searchedSongInput) } className="circular search link icon"></i>
+                    </div>
                     <br />
                     {/* <button onClick={ () => this.searchSong(this.state.searchedSongInput) }>
                       Search Song
                     </button> */}
-                    <MatButton classNames="button">Search</MatButton>
+                    {/* <MatButton classNames="button">Search</MatButton> */}
                   </form>
                 </div>
           </div>
