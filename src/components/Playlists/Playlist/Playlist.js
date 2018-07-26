@@ -15,7 +15,6 @@ class Playlist extends Component {
   componentDidMount = () => {
     const { getSongs } = this.props;
 
-    // getSongs(this.props.location.pathname.replace(/\D/g,''));
     getSongs(this.props.match.params.id);
   }
 
@@ -43,7 +42,6 @@ class Playlist extends Component {
       <div>
         <br />
         <br />
-        {/* <h1 className="clear">Playlist</h1> */}
         { songs[0] &&
         <h1 className="clear">{ songs[0].playlist_name }</h1> }
         <br />
