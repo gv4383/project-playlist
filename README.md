@@ -2,6 +2,12 @@
 
 Welcome to Sound Squirrel, the latest, but not so greatest playlist web app! The purpose of this project was to create a simple, full-stack web application that allows users to search for songs and add them to custom-made playlists.
 
+## Before Getting Started
+
+This application is currently designed for mobile view ONLY. In order to view this web application properly, kindly open up the developer tools tab and change the responsive view to "Pixel 2".
+
+Updates to make the web application fully responsive for ALL views are coming soon. Please be patient and I deeply apologize for any inconveniences this may bring.
+
 ## Getting Started
 
 Before you start using this web app, you'll have to have a valid Spotify account nad login with it. The spotify account can be the free version, or the premium version.
