@@ -21,7 +21,7 @@ const app = express();
 
 app.use(json());
 app.use(cors());
-// app.use( express.static( `${__dirname}/../build` ) );
+app.use( express.static( `${__dirname}/../build` ) );
 
 // Allows local server to utilize SQL commands within db folder
 massive(process.env.CONNECTION_STRING)
