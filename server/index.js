@@ -21,7 +21,7 @@ const app = express();
 
 app.use(json());
 app.use(cors());
-// app.use(express.static(__dirname + '/../build'));
+// app.use( express.static( `${__dirname}/../build` ) );
 
 // Allows local server to utilize SQL commands within db folder
 massive(process.env.CONNECTION_STRING)
@@ -181,7 +181,7 @@ app.get('/callback', function (req, res) {
 
 
           // local
-          res.redirect('http://localhost:3000/#/search/' +
+          res.redirect(process.env.REACT_APP_SEARCH +
             // hosting
             // res.redirect('/search/') +
             querystring.stringify({
@@ -201,7 +201,7 @@ app.get('/callback', function (req, res) {
         // }));
 
         // console.log(body);
-        // res.redirect('http://localhost:3000/#/search/' +
+        // res.redirect(process.env.REACT_APP_SEARCH +
         // querystring.stringify({
         //   access_token: access_token,
         //   refresh_token: refresh_token

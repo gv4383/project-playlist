@@ -168,7 +168,7 @@ class Search extends Component {
       <div>
         <div className="search-top">
           <div className="button-placement">
-            <button className="request-button"><a id="link" href='http://localhost:3001/login'>Request New Token</a></button>
+            <button className="request-button"><a id="link" href={process.env.REACT_APP_LOGIN}>Request New Token</a></button>
           </div>
           <br />
           <br />
