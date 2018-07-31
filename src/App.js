@@ -152,7 +152,7 @@ class App extends Component {
             <div className="menu-bar">
               <Link className="inside-bar" id="link" to="/search">
                 <div className="logo">
-                  <h3>Sound<img src={ headset } />Squirrel</h3>
+                  <h3>Sound<img src={ headset } />Skwerl</h3>
                 </div>
               </Link>
               <img className="inside-bar" id="menu-button" src={ menu } alt="menu" onClick={ () => this.setState({

@@ -1,6 +1,6 @@
-# Sound Squirrel
+# Sound Skwerl
 
-Welcome to Sound Squirrel, the latest, but not so greatest playlist web app! The purpose of this project was to create a simple, full-stack web application that allows users to search for songs and add them to custom-made playlists.
+Welcome to Sound Skwerl, the latest, but not so greatest playlist web app! The purpose of this project was to create a simple, full-stack web application that allows users to search for songs and add them to custom-made playlists.
 
 ## Before Getting Started
 
