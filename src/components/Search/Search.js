@@ -185,7 +185,7 @@ class Search extends Component {
           <br />
           <div className="search-container">
             <h2 className="search">
-              It's a search page.<br />What else are you going to do?
+              This is a search page.<br />What else are you going to do?
             </h2>
             <div>
               <div>
