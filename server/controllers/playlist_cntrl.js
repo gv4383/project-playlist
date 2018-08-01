@@ -1,7 +1,9 @@
 const getPlaylists = (req, res, next) => {
+  const { username } = req.params;
+
   const db = req.app.get('db');
 
-  db.get_playlists()
+  db.get_playlists([username])
     .then(playlists => res.status(200).send(playlists))
     .catch(err => res.status(500).send({ getPlaylistsError: err }));
 }

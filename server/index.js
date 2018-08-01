@@ -52,7 +52,7 @@ app.delete('/api/songs/:id', song_cntrl.removeSong);
 
 
 // Gets list of playlists stored in the database
-app.get('/api/playlists', playlist_cntrl.getPlaylists);
+app.get('/api/playlists/:username', playlist_cntrl.getPlaylists);
 
 // Creates new playlist entry
 app.post('/api/playlists', playlist_cntrl.createPlaylist);
