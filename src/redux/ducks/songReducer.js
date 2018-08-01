@@ -32,6 +32,8 @@ const EDIT_PLAYLIST = 'EDIT_PLAYLIST';
 
 
 /****** ACTION CREATORS ******/
+
+// retrieves access token and stores it in reducer
 export function getAccessToken(accessToken) {
   return {
     type: GET_ACCESS_TOKEN,
@@ -39,6 +41,7 @@ export function getAccessToken(accessToken) {
   }
 }
 
+// retrieves refresh token and stores it in reducer
 export function getRefreshToken(refreshToken) {
   return {
     type: GET_REFRESH_TOKEN,
@@ -46,6 +49,7 @@ export function getRefreshToken(refreshToken) {
   }
 }
 
+// stores country associated with user's spotify account in reducer
 export function storeCountry(country) {
   return {
     type: STORE_COUNTRY,
@@ -53,6 +57,7 @@ export function storeCountry(country) {
   }
 }
 
+// stores user's email  in reducer
 export function storeEmail(email) {
   return {
     type: STORE_EMAIL,
@@ -60,6 +65,7 @@ export function storeEmail(email) {
   }
 }
 
+// stores user's username in reducer
 export function storeUsername(username) {
   return {
     type: STORE_USERNAME,
@@ -118,6 +124,7 @@ export function deletePlaylist(id) {
   }
 }
 
+// edits a current playlist's description
 export function editPlaylist(id, obj) {
   return {
     type: EDIT_PLAYLIST,

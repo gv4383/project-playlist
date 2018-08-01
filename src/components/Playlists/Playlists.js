@@ -1,35 +1,47 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+// Methods brought in from redux store
 import {
   getPlaylists,
   createPlaylist
 } from '../../redux/ducks/songReducer';
+
 import MatButton from '../minor_components/MatButton/MatButton';
 import MatInput from '../minor_components/MatInput/MatInput';
+
 import PlayCard from './PlayCard/PlayCard';
 
 import './Playlists.css';
+
+/*
+ *  Playlists component is responsible for displaying all of the user's current playlists
+ *  New playlists can be created with a desired description
+ *  Each playlist will be presented as a card
+ */
 
 class Playlists extends Component {
 
   constructor(props) {
     super(props);
 
+    // Local state - stores name and description for new playlist to be created
     this.state = {
       name: '',
       description: ''
     }
   }
 
+  // Retrieves playlists associated with the user
   componentDidMount() {
+
+    // Pulled from redux
     const { getPlaylists, username } = this.props;
 
     getPlaylists(username);
   }
 
   onChangeHandler = (event) => {
-    // console.log(`${ event.target.name }: ${ event.target.value }`)
 
     // sets the the appropriate state  depending on which input is being utilized
     this.setState({
@@ -37,12 +49,12 @@ class Playlists extends Component {
     });
   }
 
+  // Creates a playlist
   onSubmitHandler = (event) => {
     event.preventDefault();
 
     alert('Playlist created!');
 
-    // console.log('this.props: ', this.props);
     const { name, description } = this.state;
     const { createPlaylist, getPlaylists, username } = this.props;
 
@@ -61,8 +73,9 @@ class Playlists extends Component {
   }
 
   render() {
+
+    // Pulled from redux
     const { playlists } = this.props;
-    // console.log('props: ', this.props);
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {
@@ -81,19 +94,6 @@ class Playlists extends Component {
         <h1 className="clear">Playlists</h1>
         <br />
         <form onSubmit={ this.onSubmitHandler }>
-          {/* <input 
-            name="name"
-            value={ this.state.name }
-            placeholder="Playlist Name"
-            onChange={ this.onChangeHandler }
-          />
-          <input 
-            name="description"
-            value={ this.state.description }
-            placeholder="Description"
-            onChange={ this.onChangeHandler }
-          />
-          <button>Add Playlist</button> */}
           <MatInput
             name="name"
             value={ this.state.name }
@@ -119,10 +119,12 @@ class Playlists extends Component {
   }
 }
 
+// Brings in redux state through props
 const mapStateToProps = (state) => {
   return state
 }
 
+// Connects Playlists component to redux store
 export default connect(mapStateToProps, {
   getPlaylists,
   createPlaylist

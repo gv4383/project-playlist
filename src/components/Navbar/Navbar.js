@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Navbar.css';
-// import { prependOnceListener } from 'cluster';
+
+/* Contains links to all routes within the applicaiton */
 
 class Navbar extends Component {
 

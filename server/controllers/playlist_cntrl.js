@@ -1,3 +1,6 @@
+/* Playlist_cntrl contains all methods that deal with the playlists within the application */
+
+// Gets list of playlists associated with the user's Spotify username
 const getPlaylists = (req, res, next) => {
   const { username } = req.params;
 
@@ -8,6 +11,7 @@ const getPlaylists = (req, res, next) => {
     .catch(err => res.status(500).send({ getPlaylistsError: err }));
 }
 
+// Creates a playlist entry in database
 const createPlaylist = (req, res, next) => {
   const { playlist_name, description, username } = req.body;
 
@@ -18,6 +22,7 @@ const createPlaylist = (req, res, next) => {
     .catch(err => res.status(500).send({ createPlaylistError: err }));
 }
 
+// Deletes a playlist within the database
 const deletePlaylist = (req, res, next) => {
   const { id } = req.params;
 
@@ -28,6 +33,7 @@ const deletePlaylist = (req, res, next) => {
     .catch(err => res.status(500).send({ deletePlaylistError: err }));
 }
 
+// Edits a current playlist's description
 const editPlaylistDescription = (req, res, next) => {
   const { id } = req.params;
   const { description } = req.body;

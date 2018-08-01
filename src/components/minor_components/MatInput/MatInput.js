@@ -1,55 +1,8 @@
-// import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-// import { withStyles } from '@material-ui/core/styles';
-// import Input from '@material-ui/core/Input';
-// import InputLabel from '@material-ui/core/InputLabel';
-// import FormHelperText from '@material-ui/core/FormHelperText';
-// import FormControl from '@material-ui/core/FormControl';
-
-// const styles = theme => ({
-//   container: {
-//     display: 'flex',
-//     flexWrap: 'wrap',
-//   },
-//   formControl: {
-//     margin: theme.spacing.unit,
-//   },
-// });
-
-// class MatInput extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-
-//   handleChange = event => {
-//     this.setState({ name: event.target.value });
-//   };
-
-//   render() {
-//     const { classes } = this.props;
-
-//     return (
-//       <div className={classes.container}>
-//         <FormControl className={classes.formControl}>
-//           <InputLabel htmlFor="name-simple">Search for a song here</InputLabel>
-//           <Input id="name-simple" onChange={this.handleChange} />
-//         </FormControl>
-//       </div>
-//     );
-//   }
-// }
-
-// MatInput.propTypes = {
-//   classes: PropTypes.object.isRequired,
-// };
-
-// export default withStyles(styles)(MatInput);
-
-
-
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+
+/* Customizable Material-UI Text Field */
 
 const styles = theme => ({
   textFieldRoot: {
@@ -81,11 +34,6 @@ const styles = theme => ({
 
 function MatInput(props) {
   const { classes } = props;
-
-  // const checkField = () => {
-  //   // some condition to check for error
-  //   let errorVariable = true
-  // }
 
   return (
     <div className={ classes.container} >

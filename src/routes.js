@@ -9,11 +9,16 @@ import Playlists from './components/Playlists/Playlists';
 import Playlist from './components/Playlists/Playlist/Playlist';
 import Playground from './components/Playground/Playground';
 
+/*  
+ *  This component sets up all of the routes within this web application
+ *  Each route will take the user to that specified path
+ */
+
 export default (
   <Switch>
     <Route exact path="/" component={ Home } />
     <Route path="/search" component={ Search } />
-    <Route path="/searched" component={ Searched } />
+    {/* <Route path="/searched" component={ Searched } /> */}
     <Route exact path="/playlists" component={ Playlists } />
     <Route path="/playlists/playlist/:id" component={ Playlist } />
     <Route path="/user" component={ User } />

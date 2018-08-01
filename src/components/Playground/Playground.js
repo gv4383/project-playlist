@@ -14,6 +14,10 @@ import MatInput from '../minor_components/MatInput/MatInput';
 
 import './Playground.css';
 
+/*
+ *  Playground component serves no real purpose towards the application
+ *  All testing of new features were originally brought here to test the functionality before being implemented into other components
+ */
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -120,5 +124,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-// export withStyles(styles)(Playground);
 export default connect(mapStateToProps)(Playground);

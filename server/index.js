@@ -169,21 +169,16 @@ app.get('/callback', function (req, res) {
 
           const db = app.get('db');
 
+          // Checks to see if the database has the current user's information
+          // If there is no user entry for the current user within the database, a new entry is created
           const res1 = await db.get_user([id])
           if (!res1[0]) {
             await db.add_user([id, email, country])
             // res.status(200).send(user[0])
           }
 
-          // else {
-          //   // res.status(200).send(res1[0]);
-          // }
 
-
-          // local
           res.redirect(process.env.REACT_APP_SEARCH +
-            // hosting
-            // res.redirect('/search/') +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,
@@ -249,10 +244,6 @@ app.get('/refresh_token', function (req, res) {
 /************ SPOTIFY SERVER SECTION ************/
 
 
-
-// app.get('*', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../build/index.html'));
-// });
 
 // Runs the server on localhost:3001
 const port = process.env.PORT || 3001;
