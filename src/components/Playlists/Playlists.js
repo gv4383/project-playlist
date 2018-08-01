@@ -44,7 +44,7 @@ class Playlists extends Component {
 
     // console.log('this.props: ', this.props);
     const { name, description } = this.state;
-    const { createPlaylist, username } = this.props;
+    const { createPlaylist, getPlaylists, username } = this.props;
 
     if (name && description) {
       createPlaylist({
@@ -52,7 +52,7 @@ class Playlists extends Component {
         description: description,
         username: username
       })
-      .then(() => this.props.getPlaylists(username))
+      .then(() => getPlaylists(username))
       .then(this.setState({
         name: '',
         description: ''
@@ -62,7 +62,7 @@ class Playlists extends Component {
 
   render() {
     const { playlists } = this.props;
-    console.log('props: ', this.props);
+    // console.log('props: ', this.props);
 
     // maps through playlists array and renders the playlist name, description, an edit button, and delete button for every object in the array
     const displayPlaylists = playlists.map((playlist, i) => {

@@ -77,9 +77,9 @@ class Search extends Component {
   }
 
   componentDidMount = () => {
-    const { getPlaylists } = this.props;
+    const { getPlaylists, username } = this.props;
 
-    getPlaylists();
+    getPlaylists(username);
   }
 
   onChangeHandler = (event) => {

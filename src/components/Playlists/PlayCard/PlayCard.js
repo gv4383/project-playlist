@@ -31,7 +31,7 @@ class PlayCard extends Component {
   }
 
   submitHandler = (id, description) => {
-    const { editPlaylist } = this.props;
+    const { editPlaylist, getPlaylists, username } = this.props;
 
     this.setState({
       edit: !this.state.edit
@@ -40,11 +40,11 @@ class PlayCard extends Component {
     editPlaylist(id, {
       description
     })
-    .then(() => this.props.getPlaylists());
+    .then(() => getPlaylists(username));
   }
 
   render() {
-    const { playlist, getPlaylists, deletePlaylist } = this.props;
+    const { playlist, getPlaylists, deletePlaylist, username } = this.props;
 
     if (this.state.edit) {
       return (
@@ -87,7 +87,7 @@ class PlayCard extends Component {
             >Edit</MatButton>
             <MatButton
               classNames="blue"
-              clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => getPlaylists()) }
+              clickButton={ () => deletePlaylist(playlist.playlist_id).then(() => getPlaylists(username)) }
             >Delete</MatButton>
           </div>
         </div>
