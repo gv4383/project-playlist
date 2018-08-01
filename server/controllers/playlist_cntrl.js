@@ -7,11 +7,11 @@ const getPlaylists = (req, res, next) => {
 }
 
 const createPlaylist = (req, res, next) => {
-  const { playlist_name, description } = req.body;
+  const { playlist_name, description, username } = req.body;
 
   const db = req.app.get('db');
 
-  db.create_playlist([playlist_name, description])
+  db.create_playlist([playlist_name, description, username])
     .then(playlist => res.status(200).send(playlist))
     .catch(err => res.status(500).send({ createPlaylistError: err }));
 }
