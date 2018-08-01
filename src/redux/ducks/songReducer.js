@@ -95,10 +95,10 @@ export function removeSong(id) {
 
 
 // gets list of playlists from server
-export function getPlaylists() {
+export function getPlaylists(username) {
   return {
     type: GET_PLAYLISTS,
-    payload: axios.get('/api/playlists')
+    payload: axios.get(`/api/playlists/${ username }`)
   };
 }
 
