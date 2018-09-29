@@ -1,5 +1,9 @@
 .home-header {
-  background: linear-gradient(45deg, rgb(250, 35, 81) 30%, rgb(172, 83, 255) 90%);
+  background: linear-gradient(
+    45deg,
+    rgb(250, 35, 81) 30%,
+    rgb(172, 83, 255) 90%
+  );
   height: 170px;
   padding: 20px;
   color: white;
@@ -11,7 +15,12 @@
 
 .home-container {
   height: 640px;
-  background: linear-gradient(45deg, rgba(199, 139, 255, 0.5) 30%, rgba(151, 211, 252, 0.5) 90%), url(../../cat.jpg);
+  background: linear-gradient(
+      45deg,
+      rgba(199, 139, 255, 0.5) 30%,
+      rgba(151, 211, 252, 0.5) 90%
+    ),
+    url(../../cat.jpg);
   /* background: linear-gradient(135deg, rgb(172, 83, 255, 0.50) 30%, rgb(250, 35, 81, 0.50) 90%), url(../../cat.jpg); */
   color: #ffffff;
   display: flex;
@@ -36,4 +45,18 @@
   width: 200px;
   font-size: 1.1em;
   font-weight: bold;
+}
+
+@media (min-width: 1024px) {
+  .home-container {
+    background: linear-gradient(
+        45deg,
+        rgba(199, 139, 255, 0.5) 30%,
+        rgba(151, 211, 252, 0.5) 90%
+      ),
+      url(../../record_player.jpg) no-repeat left -100px;
+
+    height: 100vh;
+    width: 100vw;
+  }
 }
