@@ -21,7 +21,7 @@
       rgba(199, 139, 255, 0.5) 30%,
       rgba(151, 211, 252, 0.5) 90%
     ),
-    url(../../cat.jpg);
+    url(../../record_player_mobile.jpg) no-repeat -400px 0px;
   /* background: linear-gradient(135deg, rgb(172, 83, 255, 0.50) 30%, rgb(250, 35, 81, 0.50) 90%), url(../../cat.jpg); */
   color: #ffffff;
   display: flex;
