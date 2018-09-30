@@ -9,7 +9,7 @@
   width: 320px;
   height: 180px;
   border-radius: 10px;
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.16), 0 0 0 1px rgba(0,0,0,0.08);
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.16), 0 0 0 1px rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
 }
 
@@ -27,11 +27,15 @@
   align-items: center;
   height: 274px;
   color: #ffffff;
-  background: linear-gradient(45deg, rgb(250, 35, 81, 0.50) 30%, rgb(172, 83, 255, 0.50) 90%), url(../../headphones-small.png);
+  background: linear-gradient(
+      45deg,
+      rgb(250, 35, 81, 0.5) 30%,
+      rgb(172, 83, 255, 0.5) 90%
+    ),
+    url(../../headphones-small.png);
 }
 
 .search-container {
-  
 }
 
 .request-button {
@@ -50,4 +54,16 @@
   flex-direction: row-reverse;
   justify-content: flex-start;
   align-items: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .search-top {
+    height: 500px;
+    background: linear-gradient(
+        45deg,
+        rgb(250, 35, 81, 0.5) 30%,
+        rgb(172, 83, 255, 0.5) 90%
+      ),
+      url(../../music_explosion_desktop.jpg) no-repeat 0 30%;
+  }
 }
